@@ -1,0 +1,335 @@
+# Lesson 2.2: Sua Primeira Ferramenta - n8n
+
+**Módulo:** 2 - Suas Primeiras Instalações  
+**Duração:** 15 minutos  
+**Objetivo:** Instalar e configurar n8n funcionando na sua VPS
+
+---
+
+## 🎯 O Que Você Vai Conquistar Aqui
+
+- [ ] Entender o que é n8n e por que vale a pena
+- [ ] Instalar n8n usando OrionDesign/Portainer
+- [ ] Configurar subdomínio para acessar o n8n
+- [ ] Acessar a interface do n8n via HTTPS
+- [ ] Criar seu primeiro workflow de teste
+
+---
+
+## 💰 n8n: Automação Sem Pagar Caro
+
+Fala lendário! Agora vem a parte boa: instalar sua **primeira ferramenta profissional**.
+
+E olha só que ferramenta incrível você vai ter rodando na sua VPS...
+
+### **O Que é n8n?**
+
+O **n8n** é uma ferramenta de **automação de processos**. Pensa no Zapier ou Make.com, mas:
+- ✅ **100% open source** (código aberto)
+- ✅ **Self-hosted** (roda na sua VPS)
+- ✅ **Grátis** (sem limites de execuções)
+
+### **Comparação de Custos:**
+
+- 🔴 **n8n Cloud:** R$ 150/mês (plano básico)
+- 🟢 **n8n Self-Hosted:** R$ 0 (já tá incluso na sua VPS de R$ 40/mês)
+
+**Economia mensal: R$ 150** 🎉
+
+### **O Que Você Pode Automatizar?**
+
+Com n8n você pode conectar **qualquer coisa com qualquer coisa**:
+
+- 📧 Enviar emails automáticos
+- 📊 Integrar planilhas do Google com CRM
+- 🤖 Criar chatbots
+- 📱 Automatizar WhatsApp
+- 🔔 Criar notificações
+- 📁 Processar arquivos
+- 🌐 Consumir APIs
+- ... e **muito mais**!
+
+---
+
+## 🛠️ Mão na Massa: Instalando n8n
+
+Agora vamos instalar o n8n usando o **OrionDesign** que você já configurou na lesson anterior.
+
+### **Passo 1: Acessar Portainer**
+
+1. Abra seu navegador
+2. Acesse: `http://SEU_IP:9000`
+3. Faça login no Portainer
+4. Vá em **Stacks** (menu lateral esquerdo)
+
+### **Passo 2: Acessar OrionDesign**
+
+1. Na lista de Stacks, encontre **oriondesign**
+2. Clique no ícone de "link externo" ao lado
+3. Ou acesse direto: `http://SEU_IP:1001`
+4. Você verá a biblioteca de templates
+
+### **Passo 3: Buscar Template do n8n**
+
+1. No OrionDesign, use a **barra de busca**
+2. Digite: `n8n`
+3. Clique no card do **n8n**
+4. Você verá a descrição da ferramenta
+
+### **Passo 4: Configurar Variáveis do n8n**
+
+Antes de instalar, você precisa configurar algumas variáveis. Vou te explicar cada uma:
+
+**1. Subdomínio:**
+- Campo: `SUBDOMAIN`
+- Valor: `n8n` (ou o nome que você quiser)
+- Resultado: Você vai acessar em `n8n.seudominio.com`
+
+**2. Domínio Principal:**
+- Campo: `DOMAIN`
+- Valor: `seudominio.com` (seu domínio que você registrou)
+
+**3. Email (para SSL):**
+- Campo: `EMAIL`
+- Valor: Seu email real
+- Uso: Para gerar certificado SSL automático
+
+**4. Senha do n8n:**
+- Campo: `N8N_BASIC_AUTH_PASSWORD`
+- Valor: Crie uma senha forte
+- Dica: Use algo como `MinhaSenhaSegura123!`
+
+**5. Usuário do n8n:**
+- Campo: `N8N_BASIC_AUTH_USER`
+- Valor: Seu nome de usuário (ex: `admin`)
+
+### **Passo 5: Deploy da Stack**
+
+1. Após preencher todas as variáveis, role até o final
+2. Clique no botão **"Deploy Stack"** ou **"Create Stack"**
+3. Aguarde o OrionDesign processar (10-30 segundos)
+4. Você será redirecionado para o Portainer
+
+### **Passo 6: Verificar Instalação no Portainer**
+
+1. No Portainer, vá em **Stacks**
+2. Você verá uma nova stack chamada `n8n` (ou o nome que você deu)
+3. Clique na stack
+4. Você verá os **containers** rodando:
+   - `n8n` (aplicação principal)
+   - Pode ter outros containers auxiliares (banco de dados, etc.)
+
+5. Clique no container **n8n**
+6. Vá na aba **Logs**
+7. Aguarde até ver mensagens como:
+   ```
+   Editor is now accessible via:
+   https://n8n.seudominio.com
+   ```
+
+⏱️ **Aguarde 2-5 minutos** para tudo inicializar completamente.
+
+---
+
+## 🌐 Acessando o n8n
+
+### **Passo 7: Teste de Acesso**
+
+1. Abra uma **nova aba** no navegador
+2. Acesse: `https://n8n.seudominio.com`
+3. Se tudo deu certo:
+   - ✅ Você verá a tela de login do n8n
+   - ✅ O cadeado verde (HTTPS) estará ativo
+   - ✅ Certificado SSL válido (graças ao Cloudflare!)
+
+### **Passo 8: Primeiro Login**
+
+1. Digite o **usuário** que você configurou (ex: `admin`)
+2. Digite a **senha** que você configurou
+3. Clique em **Login**
+4. **Parabéns lendário!** Você está dentro do n8n! 🎉
+
+---
+
+## 🎨 Tour pela Interface do n8n
+
+Olha só que interface linda você tem agora rodando na sua VPS!
+
+### **Elementos Principais:**
+
+1. **Workflows** (menu lateral esquerdo)
+   - Onde você cria suas automações
+
+2. **Credentials** (menu lateral)
+   - Onde você guarda suas credenciais de APIs
+
+3. **Executions** (menu lateral)
+   - Histórico de execuções dos seus workflows
+
+4. **Settings** (menu lateral)
+   - Configurações gerais
+
+---
+
+## 🧪 Criando Seu Primeiro Workflow de Teste
+
+Vamos criar um workflow simples para testar se tudo está funcionando.
+
+### **Passo 9: Criar Novo Workflow**
+
+1. Clique em **"New Workflow"** (canto superior direito)
+2. Você verá um canvas em branco
+
+### **Passo 10: Adicionar Nó de Início (Trigger)**
+
+1. Clique no **+** no canvas
+2. Busque por: `Manual Trigger`
+3. Clique para adicionar
+4. Esse nó permite executar o workflow manualmente
+
+### **Passo 11: Adicionar Nó de Ação**
+
+1. Clique no **+** à direita do Manual Trigger
+2. Busque por: `Set`
+3. Clique para adicionar
+4. No nó Set, configure:
+   - Name: `teste`
+   - Value: `Olá, meu n8n está funcionando!`
+
+### **Passo 12: Executar Workflow**
+
+1. Clique no botão **"Execute Workflow"** (canto superior direito)
+2. Aguarde alguns segundos
+3. Você verá os nós ficarem **verdes** ✅
+4. No nó Set, você verá o output: `Olá, meu n8n está funcionando!`
+
+### **Passo 13: Salvar Workflow**
+
+1. Clique em **"Save"** (canto superior direito)
+2. Dê um nome: `Teste - Meu Primeiro Workflow`
+3. Clique em **Save**
+
+**Pronto! Seu primeiro workflow foi criado e executado com sucesso!** 🚀
+
+---
+
+## ✅ Checklist: Você Conseguiu?
+
+Valida comigo se você completou tudo:
+
+- [ ] n8n instalado via OrionDesign
+- [ ] Acesso funcionando via `https://n8n.seudominio.com`
+- [ ] HTTPS (cadeado verde) ativo
+- [ ] Login realizado com sucesso
+- [ ] Primeiro workflow criado
+- [ ] Workflow executado e funcionando
+- [ ] Workflow salvo
+
+**Se você marcou tudo: PARABÉNS LENDÁRIO!** 🎉
+
+Você acabou de economizar **R$ 150/mês** e agora tem uma ferramenta profissional de automação rodando na sua própria infraestrutura!
+
+---
+
+## 🚨 Troubleshooting: E Se Algo Deu Errado?
+
+Calma, isso faz parte! Vamos resolver juntos.
+
+### **Problema 1: n8n não abre (erro 404 ou timeout)**
+
+**Possíveis causas:**
+- DNS ainda não propagou completamente
+- Container não inicializou ainda
+- Configuração do Cloudflare
+
+**Soluções:**
+1. Aguarde mais 5-10 minutos para DNS propagar
+2. Verifique os logs no Portainer:
+   - Stacks → n8n → Container n8n → Logs
+   - Procure por erros em vermelho
+3. Verifique se o container está rodando:
+   - Portainer → Containers
+   - Status do n8n deve estar "running"
+4. No Cloudflare, verifique:
+   - Registro A para `n8n` ou `*` apontando para IP da VPS
+   - Proxy (nuvem laranja) deve estar ON
+   - SSL/TLS em modo "Full"
+
+### **Problema 2: HTTPS não funciona (erro de certificado)**
+
+**Possíveis causas:**
+- Cloudflare ainda processando SSL
+- Modo SSL/TLS incorreto
+
+**Soluções:**
+1. Aguarde 5-10 minutos
+2. No Cloudflare:
+   - SSL/TLS → Overview → Modo "Full"
+   - SSL/TLS → Edge Certificates → "Always Use HTTPS" ON
+3. Limpe cache do navegador (Ctrl+F5)
+4. Tente em navegador anônimo
+
+### **Problema 3: Erro ao fazer login (credenciais inválidas)**
+
+**Possíveis causas:**
+- Senha/usuário digitados errados
+- Variáveis configuradas incorretamente
+
+**Soluções:**
+1. Verifique as variáveis no Portainer:
+   - Stacks → n8n → Editor
+   - Verifique `N8N_BASIC_AUTH_USER` e `N8N_BASIC_AUTH_PASSWORD`
+2. Se necessário, edite a stack e atualize as credenciais
+3. Reinicie o container:
+   - Containers → n8n → Restart
+
+### **Problema 4: Container em loop (reiniciando constantemente)**
+
+**Possíveis causas:**
+- Falta de recursos (RAM/CPU)
+- Erro na configuração
+
+**Soluções:**
+1. Verifique uso de recursos no Portainer Dashboard
+2. Se RAM > 80%: considere upgrade de VPS
+3. Verifique logs para identificar erro específico
+4. Tente remover a stack e criar novamente
+
+---
+
+## 💡 Dicas Pro
+
+Agora que você já tem o n8n rodando, algumas dicas:
+
+1. **Explore Templates Prontos:**
+   - n8n.io/workflows (comunidade)
+   - Copie workflows prontos e adapte
+
+2. **Conecte Outras Ferramentas:**
+   - Google Sheets
+   - Notion
+   - Slack
+   - Email
+   - WhatsApp (via Evolution API que você vai instalar!)
+
+3. **Automatize Seus Processos:**
+   - Pense em tarefas repetitivas que você faz
+   - Veja se dá pra automatizar com n8n
+
+4. **Documentação Oficial:**
+   - docs.n8n.io
+   - Muito completa e em inglês
+
+---
+
+## 🎯 Próxima Lesson
+
+Na **Lesson 2.3**, você vai instalar o **Chatwoot** (ferramenta de atendimento ao cliente).
+
+Mais **R$ 100/mês economizados**! 💰
+
+Vamos continuar economizando e ganhando autonomia!
+
+**Me conta aqui como foi! Dúvidas? Fique à vontade para encaminhar no suporte.** 
+
+Até a próxima, lendário! 🚀
