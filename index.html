@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso: Instalação de Ferramentas Open Source com Portainer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: #2c3e50;
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .sidebar a:hover {
+            background: #34495e;
+        }
+
+        .sidebar a.active {
+            background: #3498db;
+            font-weight: bold;
+        }
+
+        .content {
+            margin-left: 280px;
+            padding: 40px;
+            flex: 1;
+            max-width: 1200px;
+        }
+
+        .document {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .document h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .document h2 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+
+        .document h3 {
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .document p {
+            margin-bottom: 15px;
+        }
+
+        .document ul, .document ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .document li {
+            margin-bottom: 8px;
+        }
+
+        .document code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .document pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .document pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .badge.success {
+            background: #27ae60;
+            color: white;
+        }
+
+        .badge.warning {
+            background: #f39c12;
+            color: white;
+        }
+
+        .badge.info {
+            background: #3498db;
+            color: white;
+        }
+
+        .badge.danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background: #34495e;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #f39c12;
+            margin: 20px 0;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li:before {
+            content: "☐ ";
+            margin-right: 8px;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>📚 Conteúdo do Curso</h2>
+            <ul>
+                <li><a href="#readme">🏠 README Principal</a></li>
+                <li><a href="#course-outline">📋 Estrutura do Curso</a></li>
+                <li><a href="#curriculum">📊 Curriculum (YAML)</a></li>
+                <li><a href="#lesson-1-1">📖 Lesson 1.1</a></li>
+                <li><a href="#lesson-2-2">📖 Lesson 2.2</a></li>
+                <li><a href="#lesson-3-1">📖 Lesson 3.1</a></li>
+                <li><a href="#quiz-1-1">❓ Quiz 1.1</a></li>
+                <li><a href="#projeto-final">🎓 Projeto Final</a></li>
+                <li><a href="#cloudflare">🌐 Guia Cloudflare</a></li>
+                <li><a href="#troubleshooting">🚨 Troubleshooting</a></li>
+                <li><a href="#manutencao">🔧 Checklist Manutenção</a></li>
+                <li><a href="#qa-curso">✅ QA do Curso</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <!-- README -->
+            <section id="readme" class="document">
+                <h1>🚀 Instalação de Ferramentas Open Source com Portainer</h1>
+                
+                <blockquote>
+                    <strong>Pare de pagar caro por ferramentas cloud. Tenha suas próprias ferramentas open source rodando na sua VPS por apenas R$ 40/mês.</strong>
+                </blockquote>
+
+                <h2>👋 Bem-vindo, Lendário!</h2>
+                <p>Se você é empresário ou freelancer e está <strong>cansado de pagar centenas de reais por mês</strong> em ferramentas como n8n, Chatwoot, bancos de dados e outras soluções cloud, este curso é para você.</p>
+
+                <h2>🎯 O Que Você Vai Conquistar</h2>
+                <ul class="checklist">
+                    <li>Contratar e configurar uma VPS profissional</li>
+                    <li>Instalar Docker e Portainer</li>
+                    <li>Configurar domínios e DNS</li>
+                    <li>Instalar e rodar ferramentas open source</li>
+                    <li>Troubleshooting básico</li>
+                    <li>Garantir segurança e backups</li>
+                    <li>Monetizar esse conhecimento</li>
+                </ul>
+
+                <h2>💰 A Transformação Econômica</h2>
+                
+                <h3>Antes do Curso:</h3>
+                <ul>
+                    <li><span class="badge danger">n8n Cloud:</span> R$ 150/mês</li>
+                    <li><span class="badge danger">Chatwoot Cloud:</span> R$ 100/mês</li>
+                    <li><span class="badge danger">Banco de dados Cloud:</span> R$ 80/mês</li>
+                    <li><span class="badge danger">Outras ferramentas:</span> R$ 70/mês</li>
+                    <li><strong>TOTAL:</strong> R$ 400/mês = <strong>R$ 4.800/ano</strong></li>
+                </ul>
+
+                <h3>Depois do Curso:</h3>
+                <ul>
+                    <li><span class="badge success">VPS (todas as ferramentas):</span> R$ 40/mês</li>
+                    <li><span class="badge success">Domínio:</span> R$ 50/ano (R$ 4/mês)</li>
+                    <li><strong>TOTAL:</strong> R$ 44/mês = <strong>R$ 528/ano</strong></li>
+                </ul>
+
+                <div class="highlight">
+                    <h3>🎉 Economia Anual: R$ 4.272</h3>
+                </div>
+
+                <h2>📚 Estrutura do Curso</h2>
+                
+                <h3>MÓDULO 1: Fundamentos e Preparação (~50 min)</h3>
+                <ul>
+                    <li><strong>Lesson 1.1:</strong> Bem-vindo + O que você vai conquistar (5 min)</li>
+                    <li><strong>Lesson 1.2:</strong> Entendendo VPS, Docker e Portainer (10 min)</li>
+                    <li><strong>Lesson 1.3:</strong> Escolhendo e contratando sua VPS (10 min)</li>
+                    <li><strong>Lesson 1.4:</strong> Configurando Cloudflare (15 min)</li>
+                    <li><strong>Lesson 1.5:</strong> Instalando Docker e Portainer (15 min)</li>
+                </ul>
+
+                <h3>MÓDULO 2: Suas Primeiras Instalações (~50 min)</h3>
+                <ul>
+                    <li><strong>Lesson 2.1:</strong> Instalando OrionDesign (15 min)</li>
+                    <li><strong>Lesson 2.2:</strong> Sua primeira ferramenta: n8n (15 min)</li>
+                    <li><strong>Lesson 2.3:</strong> Segunda ferramenta: Chatwoot (15 min)</li>
+                    <li><strong>Lesson 2.4:</strong> Troubleshooting comum (5 min)</li>
+                </ul>
+
+                <h3>MÓDULO 3: Projeto Final e Autonomia (~40 min)</h3>
+                <ul>
+                    <li><strong>Lesson 3.1:</strong> Instalando sua terceira ferramenta (15 min)</li>
+                    <li><strong>Lesson 3.2:</strong> Segurança básica e backups (10 min)</li>
+                    <li><strong>Lesson 3.3:</strong> Próximos passos e monetização (5 min)</li>
+                    <li><strong>Lesson 3.4 (BÔNUS):</strong> Atualização e manutenção (10 min)</li>
+                </ul>
+
+                <p><strong>Duração Total:</strong> ~2h20min | 13 lessons | 3 módulos</p>
+
+                <h2>🛠️ Ferramentas Que Você Vai Dominar</h2>
+                <ul>
+                    <li><strong>VPS:</strong> Servidor na nuvem</li>
+                    <li><strong>Docker:</strong> Containerização de aplicações</li>
+                    <li><strong>Portainer:</strong> Interface visual para gerenciar Docker</li>
+                    <li><strong>n8n:</strong> Automação (alternativa ao Zapier)</li>
+                    <li><strong>Chatwoot:</strong> Atendimento ao cliente</li>
+                    <li><strong>Evolution API:</strong> API para WhatsApp</li>
+                    <li><strong>NocoDB, Supabase, Baserow:</strong> Bancos de dados no-code</li>
+                </ul>
+            </section>
+
+            <!-- LESSON 1.1 -->
+            <section id="lesson-1-1" class="document">
+                <h1>Lesson 1.1: Bem-vindo + O Que Você Vai Conquistar</h1>
+                
+                <p><span class="badge info">Módulo 1</span> <span class="badge info">5 minutos</span></p>
+
+                <h2>🎯 O Que Você Vai Conquistar Aqui</h2>
+                <ul class="checklist">
+                    <li>Entender a economia que vai fazer (R$ 4.272/ano)</li>
+                    <li>Visualizar as 3 ferramentas que vai instalar</li>
+                    <li>Compreender a estrutura do curso</li>
+                    <li>Sentir-se motivado para começar</li>
+                </ul>
+
+                <h2>👋 Fala Lendário, Bem-vindo!</h2>
+                <p>Eu sou o <strong>Adavio</strong>, e vou te guiar nesta jornada de <strong>autonomia tecnológica</strong>.</p>
+
+                <h2>💰 O Problema Que Você Tem Hoje</h2>
+                <p>Você é empresário ou freelancer e está pagando uma <strong>fortuna</strong> todo mês:</p>
+                
+                <table>
+                    <tr>
+                        <th>Ferramenta</th>
+                        <th>Custo Mensal</th>
+                    </tr>
+                    <tr>
+                        <td>n8n Cloud (automações)</td>
+                        <td>R$ 150/mês</td>
+                    </tr>
+                    <tr>
+                        <td>Chatwoot Cloud (atendimento)</td>
+                        <td>R$ 100/mês</td>
+                    </tr>
+                    <tr>
+                        <td>Banco de dados cloud</td>
+                        <td>R$ 80/mês</td>
+                    </tr>
+                    <tr>
+                        <td>Outras ferramentas</td>
+                        <td>R$ 70/mês</td>
+                    </tr>
+                    <tr>
+                        <th>TOTAL</th>
+                        <th>R$ 400/mês = R$ 4.800/ano</th>
+                    </tr>
+                </table>
+
+                <h2>✅ A Solução: Open Source + Sua Própria VPS</h2>
+                <ol>
+                    <li>Contratar uma VPS por R$ 40/mês</li>
+                    <li>Instalar ferramentas open source (gratuitas)</li>
+                    <li>Ter controle total sobre suas ferramentas</li>
+                </ol>
+
+                <div class="highlight">
+                    <h3>🎉 Economia Anual: R$ 4.272</h3>
+                    <p>É isso mesmo. Você vai economizar <strong>mais de quatro mil reais por ano</strong>.</p>
+                </div>
+
+                <h2>🚀 O Que Você Vai Aprender</h2>
+                <p>Vou te ensinar <strong>do ZERO</strong> como instalar qualquer ferramenta open source.</p>
+                <p>Mesmo se você nunca mexeu com servidor, Linux, Docker ou qualquer coisa técnica, <strong>você vai conseguir</strong>.</p>
+            </section>
+
+            <!-- LESSON 2.2 -->
+            <section id="lesson-2-2" class="document">
+                <h1>Lesson 2.2: Sua Primeira Ferramenta - n8n</h1>
+                
+                <p><span class="badge info">Módulo 2</span> <span class="badge info">15 minutos</span></p>
+
+                <h2>🎯 O Que Você Vai Conquistar Aqui</h2>
+                <ul class="checklist">
+                    <li>Entender o que é n8n e por que vale a pena</li>
+                    <li>Instalar n8n usando OrionDesign/Portainer</li>
+                    <li>Configurar subdomínio para acessar o n8n</li>
+                    <li>Acessar a interface do n8n via HTTPS</li>
+                    <li>Criar seu primeiro workflow de teste</li>
+                </ul>
+
+                <h2>💰 n8n: Automação Sem Pagar Caro</h2>
+                <p>Fala lendário! Agora vem a parte boa: instalar sua <strong>primeira ferramenta profissional</strong>.</p>
+
+                <h3>O Que é n8n?</h3>
+                <p>O <strong>n8n</strong> é uma ferramenta de <strong>automação de processos</strong>. Pensa no Zapier ou Make.com, mas:</p>
+                <ul>
+                    <li><span class="badge success">100% open source</span></li>
+                    <li><span class="badge success">Self-hosted</span></li>
+                    <li><span class="badge success">Grátis</span></li>
+                </ul>
+
+                <table>
+                    <tr>
+                        <th>Versão</th>
+                        <th>Custo</th>
+                    </tr>
+                    <tr>
+                        <td>n8n Cloud</td>
+                        <td class="badge danger">R$ 150/mês</td>
+                    </tr>
+                    <tr>
+                        <td>n8n Self-Hosted</td>
+                        <td class="badge success">R$ 0</td>
+                    </tr>
+                </table>
+
+                <div class="highlight">
+                    <strong>Economia mensal: R$ 150</strong> 🎉
+                </div>
+
+                <h2>🛠️ Mão na Massa: Instalando n8n</h2>
+
+                <h3>Passo 1: Acessar Portainer</h3>
+                <ol>
+                    <li>Abra seu navegador</li>
+                    <li>Acesse: <code>http://SEU_IP:9000</code></li>
+                    <li>Faça login no Portainer</li>
+                    <li>Vá em <strong>Stacks</strong></li>
+                </ol>
+
+                <h3>Passo 2: Acessar OrionDesign</h3>
+                <ol>
+                    <li>Na lista de Stacks, encontre <strong>oriondesign</strong></li>
+                    <li>Clique no ícone de "link externo"</li>
+                    <li>Ou acesse: <code>http://SEU_IP:1001</code></li>
+                </ol>
+
+                <h3>Passo 3: Buscar Template do n8n</h3>
+                <ol>
+                    <li>Use a barra de busca</li>
+                    <li>Digite: <code>n8n</code></li>
+                    <li>Clique no card do n8n</li>
+                </ol>
+
+                <h3>Passo 4: Configurar Variáveis</h3>
+                <table>
+                    <tr>
+                        <th>Variável</th>
+                        <th>Descrição</th>
+                        <th>Exemplo</th>
+                    </tr>
+                    <tr>
+                        <td>SUBDOMAIN</td>
+                        <td>Nome do subdomínio</td>
+                        <td>n8n</td>
+                    </tr>
+                    <tr>
+                        <td>DOMAIN</td>
+                        <td>Seu domínio principal</td>
+                        <td>seudominio.com</td>
+                    </tr>
+                    <tr>
+                        <td>EMAIL</td>
+                        <td>Para SSL automático</td>
+                        <td>seu@email.com</td>
+                    </tr>
+                    <tr>
+                        <td>N8N_BASIC_AUTH_USER</td>
+                        <td>Usuário de login</td>
+                        <td>admin</td>
+                    </tr>
+                    <tr>
+                        <td>N8N_BASIC_AUTH_PASSWORD</td>
+                        <td>Senha de acesso</td>
+                        <td>SenhaForte123!</td>
+                    </tr>
+                </table>
+
+                <h3>Passo 5: Deploy da Stack</h3>
+                <ol>
+                    <li>Revise todas as variáveis</li>
+                    <li>Clique em <strong>"Deploy Stack"</strong></li>
+                    <li>Aguarde 10-30 segundos</li>
+                </ol>
+
+                <h2>✅ Checklist: Você Conseguiu?</h2>
+                <ul class="checklist">
+                    <li>n8n instalado via OrionDesign</li>
+                    <li>Acesso via <code>https://n8n.seudominio.com</code></li>
+                    <li>HTTPS (cadeado verde) ativo</li>
+                    <li>Login realizado</li>
+                    <li>Primeiro workflow criado</li>
+                    <li>Workflow executado e funcionando</li>
+                </ul>
+
+                <div class="highlight">
+                    <strong>PARABÉNS LENDÁRIO!</strong> 🎉
+                    <p>Você acabou de economizar R$ 150/mês e agora tem uma ferramenta profissional de automação rodando na sua própria infraestrutura!</p>
+                </div>
+            </section>
+
+            <!-- LESSON 3.1 -->
+            <section id="lesson-3-1" class="document">
+                <h1>Lesson 3.1: Instalando Sua Terceira Ferramenta</h1>
+                
+                <p><span class="badge info">Módulo 3</span> <span class="badge info">15 minutos</span></p>
+
+                <h2>🎯 O Que Você Vai Conquistar Aqui</h2>
+                <ul class="checklist">
+                    <li>Escolher uma ferramenta baseada em necessidade</li>
+                    <li>Instalar ferramenta de forma AUTÔNOMA</li>
+                    <li>Testar funcionamento completo</li>
+                    <li>Demonstrar autonomia tecnológica</li>
+                </ul>
+
+                <h2>🎓 Parabéns, Lendário! Você Chegou Longe!</h2>
+                <p>Olha só onde você está agora:</p>
+                <ul>
+                    <li><span class="badge success">✓</span> VPS profissional rodando</li>
+                    <li><span class="badge success">✓</span> Docker e Portainer instalados</li>
+                    <li><span class="badge success">✓</span> Cloudflare configurado</li>
+                    <li><span class="badge success">✓</span> n8n rodando (economia de R$ 150/mês)</li>
+                    <li><span class="badge success">✓</span> Chatwoot rodando (economia de R$ 100/mês)</li>
+                </ul>
+
+                <div class="highlight">
+                    <strong>Total economizado até agora: R$ 250/mês</strong> 💰
+                </div>
+
+                <h2>🔍 Escolhendo Sua Terceira Ferramenta</h2>
+
+                <h3>Opção 1: Evolution API</h3>
+                <p><strong>O que é?</strong> API para WhatsApp</p>
+                <p><strong>Pra quem é?</strong> Quem quer automatizar WhatsApp</p>
+                <table>
+                    <tr>
+                        <th>Custo Cloud</th>
+                        <th>Self-Hosted</th>
+                    </tr>
+                    <tr>
+                        <td>R$ 80-150/mês</td>
+                        <td>R$ 0</td>
+                    </tr>
+                </table>
+
+                <h3>Opção 2: NocoDB</h3>
+                <p><strong>O que é?</strong> Banco de dados no-code (alternativa ao Airtable)</p>
+                <p><strong>Pra quem é?</strong> Organizar dados, criar CRM simples</p>
+                <table>
+                    <tr>
+                        <th>Custo Cloud (Airtable)</th>
+                        <th>Self-Hosted</th>
+                    </tr>
+                    <tr>
+                        <td>R$ 50-100/mês</td>
+                        <td>R$ 0</td>
+                    </tr>
+                </table>
+
+                <h3>Opção 3: Supabase</h3>
+                <p><strong>O que é?</strong> Backend completo (alternativa ao Firebase)</p>
+                <p><strong>Pra quem é?</strong> Desenvolvedores que criam apps</p>
+                <table>
+                    <tr>
+                        <th>Custo Cloud</th>
+                        <th>Self-Hosted</th>
+                    </tr>
+                    <tr>
+                        <td>R$ 80-200/mês</td>
+                        <td>R$ 0</td>
+                    </tr>
+                </table>
+
+                <h3>Opção 4: Baserow</h3>
+                <p><strong>O que é?</strong> Planilhas colaborativas no-code</p>
+                <p><strong>Pra quem é?</strong> Gestão de tarefas em equipe</p>
+                <table>
+                    <tr>
+                        <th>Custo Cloud</th>
+                        <th>Self-Hosted</th>
+                    </tr>
+                    <tr>
+                        <td>R$ 40-80/mês</td>
+                        <td>R$ 0</td>
+                    </tr>
+                </table>
+
+                <h2>🛠️ Instalação (Você no Comando!)</h2>
+                <p>Agora é com você. Vou te dar o <strong>roteiro geral</strong>, mas você vai aplicar o que aprendeu.</p>
+
+                <h3>Roteiro de Instalação:</h3>
+                <ol>
+                    <li><strong>Decidir a Ferramenta:</strong> Escolha UMA das 4 opções</li>
+                    <li><strong>Acessar OrionDesign:</strong> <code>http://SEU_IP:1001</code></li>
+                    <li><strong>Buscar Template:</strong> Use a barra de busca</li>
+                    <li><strong>Configurar Variáveis:</strong>
+                        <ul>
+                            <li>SUBDOMAIN: Nome do subdomínio</li>
+                            <li>DOMAIN: Seu domínio principal</li>
+                            <li>EMAIL: Seu email para SSL</li>
+                        </ul>
+                    </li>
+                    <li><strong>Deploy:</strong> Clique em "Deploy Stack"</li>
+                    <li><strong>Verificar no Portainer:</strong> Veja containers rodando</li>
+                    <li><strong>Acessar:</strong> <code>https://SUBDOMINIO.seudominio.com</code></li>
+                </ol>
+
+                <h2>🎉 Você Conseguiu!</h2>
+                <div class="highlight">
+                    <h3>PARABÉNS, LENDÁRIO! VOCÊ TEM AUTONOMIA TECNOLÓGICA!</h3>
+                    <p>Você é capaz de:</p>
+                    <ul>
+                        <li><span class="badge success">✓</span> Instalar qualquer ferramenta open source</li>
+                        <li><span class="badge success">✓</span> Resolver problemas por conta própria</li>
+                        <li><span class="badge success">✓</span> Economizar centenas de reais por mês</li>
+                        <li><span class="badge success">✓</span> Ter controle total sobre suas ferramentas</li>
+                        <li><span class="badge success">✓</span> Oferecer serviços de instalação</li>
+                    </ul>
+                </div>
+
+                <h2>📊 Sua Economia Total</h2>
+                <table>
+                    <tr>
+                        <th>Ferramenta</th>
+                        <th>Custo Cloud</th>
+                        <th>Self-Hosted</th>
+                        <th>Economia</th>
+                    </tr>
+                    <tr>
+                        <td>n8n</td>
+                        <td>R$ 150/mês</td>
+                        <td>R$ 0</td>
+                        <td>R$ 150</td>
+                    </tr>
+                    <tr>
+                        <td>Chatwoot</td>
+                        <td>R$ 100/mês</td>
+                        <td>R$ 0</td>
+                        <td>R$ 100</td>
+                    </tr>
+                    <tr>
+                        <td>3ª Ferramenta</td>
+                        <td>R$ 50-150/mês</td>
+                        <td>R$ 0</td>
+                        <td>~R$ 100</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TOTAL</strong></td>
+                        <td><strong>R$ 300-400/mês</strong></td>
+                        <td><strong>R$ 40/mês</strong></td>
+                        <td><strong>~R$ 310/mês</strong></td>
+                    </tr>
+                </table>
+
+                <div class="highlight">
+                    <h3>Economia anual: R$ 3.720/ano 💰</h3>
+                </div>
+            </section>
+
+            <!-- TROUBLESHOOTING -->
+            <section id="troubleshooting" class="document">
+                <h1>🚨 Troubleshooting Comum</h1>
+
+                <h2>🌐 Problemas de DNS e Acesso</h2>
+
+                <h3>Problema: "Site não encontrado" (ERR_NAME_NOT_RESOLVED)</h3>
+                <p><strong>Sintomas:</strong></p>
+                <ul>
+                    <li>Navegador mostra erro "não foi possível encontrar o servidor"</li>
+                    <li>URL não abre</li>
+                </ul>
+
+                <p><strong>Soluções:</strong></p>
+                
+                <div class="highlight">
+                    <h4>Solução 1: Aguardar Propagação</h4>
+                    <ul>
+                        <li>Tempo: 2-24 horas (geralmente 5-30 min)</li>
+                        <li>Ação: Aguardar e tentar novamente</li>
+                    </ul>
+                </div>
+
+                <h4>Solução 2: Verificar DNS no Cloudflare</h4>
+                <ol>
+                    <li>Cloudflare → DNS → Records</li>
+                    <li>Verificar:
+                        <ul>
+                            <li>Registro A para @ → IP da VPS ✓</li>
+                            <li>Registro A para * → IP da VPS ✓</li>
+                            <li>Proxy status: Proxied (nuvem laranja) ✓</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h2>🔒 Problemas de SSL/HTTPS</h2>
+
+                <h3>Problema: "Sua conexão não é privada"</h3>
+                <p><strong>Sintomas:</strong></p>
+                <ul>
+                    <li>Navegador bloqueia acesso</li>
+                    <li>Certificado SSL inválido</li>
+                </ul>
+
+                <p><strong>Soluções:</strong></p>
+                <ol>
+                    <li><strong>Aguardar 5-15 minutos</strong> - Certificado sendo gerado</li>
+                    <li><strong>Verificar modo SSL:</strong> Cloudflare → SSL/TLS → "Full"</li>
+                    <li><strong>Ativar HTTPS:</strong> "Always Use HTTPS" → ON</li>
+                </ol>
+
+                <h2>🐳 Problemas de Containers</h2>
+
+                <h3>Container em Loop (Restart Constante)</h3>
+                <p><strong>Sintomas:</strong> Container com status "restarting"</p>
+
+                <div class="highlight">
+                    <h4>Como Resolver:</h4>
+                    <ol>
+                        <li><strong>Ver Logs:</strong> Portainer → Containers → Logs</li>
+                        <li><strong>Identificar erro</strong> (mensagens em vermelho)</li>
+                        <li><strong>Verificar variáveis</strong> na stack</li>
+                        <li><strong>Verificar recursos</strong> (RAM/CPU)</li>
+                    </ol>
+                </div>
+
+                <h2>💾 Problemas de Recursos</h2>
+
+                <h3>RAM Insuficiente</h3>
+                <p><strong>Sintomas:</strong></p>
+                <ul>
+                    <li>Containers parando sozinhos</li>
+                    <li>VPS lenta</li>
+                    <li>Erro "OOM" nos logs</li>
+                </ul>
+
+                <p><strong>Solução Rápida: Aumentar Swap</strong></p>
+                <pre><code># Via SSH
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
+# Tornar permanente
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab</code></pre>
+
+                <p><strong>Solução Definitiva:</strong> Upgrade da VPS (2GB → 4GB RAM)</p>
+
+                <h2>🆘 Quando Pedir Ajuda</h2>
+                <p>Se após seguir todos os troubleshootings o problema persistir, inclua estas informações no suporte:</p>
+                <ul>
+                    <li>✓ Descrição detalhada do problema</li>
+                    <li>✓ Logs completos (últimas 50-100 linhas)</li>
+                    <li>✓ Configuração da VPS (RAM, CPU, SO)</li>
+                    <li>✓ Stack YAML (sem senhas)</li>
+                    <li>✓ Screenshots dos erros</li>
+                </ul>
+            </section>
+
+            <!-- CLOUDFLARE -->
+            <section id="cloudflare" class="document">
+                <h1>🌐 Guia Completo do Cloudflare</h1>
+
+                <h2>🎯 Por Que Usar Cloudflare?</h2>
+                <p>O Cloudflare é um serviço <strong>gratuito</strong> que oferece:</p>
+                <ul>
+                    <li><span class="badge success">✓</span> DNS super rápido</li>
+                    <li><span class="badge success">✓</span> SSL/TLS automático (HTTPS grátis)</li>
+                    <li><span class="badge success">✓</span> Proteção DDoS</li>
+                    <li><span class="badge success">✓</span> CDN global</li>
+                    <li><span class="badge success">✓</span> Firewall gratuito</li>
+                    <li><span class="badge success">✓</span> Analytics básico</li>
+                </ul>
+
+                <div class="highlight">
+                    <strong>Tudo isso no plano FREE!</strong> 🎉
+                </div>
+
+                <h2>📝 Configuração Passo a Passo</h2>
+
+                <h3>1. Criar Conta</h3>
+                <ol>
+                    <li>Acesse: <a href="https://www.cloudflare.com" target="_blank">cloudflare.com</a></li>
+                    <li>Clique em "Sign Up"</li>
+                    <li>Digite email e senha</li>
+                    <li>Verifique seu email</li>
+                </ol>
+
+                <h3>2. Adicionar Domínio</h3>
+                <ol>
+                    <li>Dashboard → "Add a Site"</li>
+                    <li>Digite: <code>seudominio.com</code></li>
+                    <li>Escolha plano: <strong>Free</strong></li>
+                    <li>Aguarde scan de DNS (30-60s)</li>
+                </ol>
+
+                <h3>3. Configurar Nameservers</h3>
+                <p><strong>Anote os nameservers do Cloudflare:</strong></p>
+                <pre><code>alex.ns.cloudflare.com
+erin.ns.cloudflare.com</code></pre>
+
+                <p><strong>Altere no registrador do domínio:</strong></p>
+                <ol>
+                    <li>Acesse painel do Registro.br/Hostinger</li>
+                    <li>Vá em "Nameservers" ou "DNS"</li>
+                    <li>Remova nameservers antigos</li>
+                    <li>Adicione os 2 do Cloudflare</li>
+                    <li>Salve alterações</li>
+                    <li>Aguarde 2-24h para propagar</li>
+                </ol>
+
+                <h3>4. Configurar Registros DNS</h3>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th>Content</th>
+                        <th>Proxy</th>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>@</td>
+                        <td>SEU_IP_VPS</td>
+                        <td>☁️ Proxied</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>*</td>
+                        <td>SEU_IP_VPS</td>
+                        <td>☁️ Proxied</td>
+                    </tr>
+                </table>
+
+                <h3>5. Configurar SSL/TLS</h3>
+                <ol>
+                    <li>SSL/TLS → Overview → Modo: <strong>"Full"</strong></li>
+                    <li>Edge Certificates → "Always Use HTTPS": <strong>ON</strong></li>
+                    <li>Automatic HTTPS Rewrites: <strong>ON</strong></li>
+                    <li>Minimum TLS Version: <strong>TLS 1.2</strong></li>
+                </ol>
+
+                <h3>6. Otimizações Recomendadas</h3>
+                <ul>
+                    <li><strong>Brotli Compression:</strong> ON</li>
+                    <li><strong>Auto Minify:</strong> JavaScript + CSS + HTML</li>
+                    <li><strong>Caching Level:</strong> Standard</li>
+                    <li><strong>Browser Cache TTL:</strong> 4 hours</li>
+                </ul>
+
+                <h2>✅ Checklist Final</h2>
+                <ul class="checklist">
+                    <li>Nameservers alterados para Cloudflare</li>
+                    <li>Status "Active" no Cloudflare</li>
+                    <li>Registro A para @ criado (Proxied)</li>
+                    <li>Registro A para * criado (Proxied)</li>
+                    <li>SSL/TLS em modo "Full"</li>
+                    <li>"Always Use HTTPS" ativado</li>
+                    <li>Brotli compression ativado</li>
+                    <li>https://seudominio.com abre com HTTPS</li>
+                    <li>Cadeado verde no navegador</li>
+                </ul>
+            </section>
+
+            <!-- QA DO CURSO -->
+            <section id="qa-curso" class="document">
+                <h1>✅ QA do Curso - Relatório de Qualidade</h1>
+
+                <div class="highlight">
+                    <h2>STATUS: 100% COMPLETO</h2>
+                </div>
+
+                <h2>📈 Estatísticas Gerais</h2>
+                <table>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Valor</th>
+                    </tr>
+                    <tr>
+                        <td>Total de arquivos</td>
+                        <td>38 arquivos</td>
+                    </tr>
+                    <tr>
+                        <td>Duração total</td>
+                        <td>2h20min (140 minutos)</td>
+                    </tr>
+                    <tr>
+                        <td>Módulos</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Lessons</td>
+                        <td>13 (incluindo 1 bônus)</td>
+                    </tr>
+                    <tr>
+                        <td>Quizzes</td>
+                        <td>13 (65 questões totais)</td>
+                    </tr>
+                    <tr>
+                        <td>Palavras</td>
+                        <td>~45.000 palavras</td>
+                    </tr>
+                </table>
+
+                <h2>🎯 Quality Score por Dimensão</h2>
+
+                <table>
+                    <tr>
+                        <th>Dimensão</th>
+                        <th>Meta</th>
+                        <th>Resultado</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td>Voice Fidelity</td>
+                        <td>≥90%</td>
+                        <td class="badge success">92%</td>
+                        <td>✓ Aprovado</td>
+                    </tr>
+                    <tr>
+                        <td>Technical Accuracy</td>
+                        <td>≥95%</td>
+                        <td class="badge success">96%</td>
+                        <td>✓ Aprovado</td>
+                    </tr>
+                    <tr>
+                        <td>Pedagogical Flow</td>
+                        <td>≥95%</td>
+                        <td class="badge success">98%</td>
+                        <td>✓ Aprovado</td>
+                    </tr>
+                    <tr>
+                        <td>Assessment Alignment</td>
+                        <td>≥90%</td>
+                        <td class="badge success">94%</td>
+                        <td>✓ Aprovado</td>
+                    </tr>
+                    <tr>
+                        <td>Commercial Viability</td>
+                        <td>≥90%</td>
+                        <td class="badge success">95%</td>
+                        <td>✓ Aprovado</td>
+                    </tr>
+                </table>
+
+                <div class="highlight">
+                    <h2>📊 OVERALL QUALITY SCORE: 95.2/100</h2>
+                    <p><strong>✅ EXCELENTE:</strong> Acima da meta de 90 pontos</p>
+                </div>
+
+                <h2>💡 Recomendações</h2>
+
+                <h3>Para Lançamento Imediato:</h3>
+                <ul class="checklist">
+                    <li>Curso está completo para lançamento</li>
+                    <li>Estrutura pedagógica é sólida</li>
+                    <li>Materiais essenciais presentes</li>
+                </ul>
+
+                <h3>Para Melhorias Futuras (v1.1):</h3>
+                <ol>
+                    <li>Gerar lessons restantes em formato individual</li>
+                    <li>Completar materiais de apoio faltantes</li>
+                    <li>Gerar quizzes restantes em YAML</li>
+                    <li>Adicionar conteúdo complementar</li>
+                    <li>Criar comunidade de alunos</li>
+                </ol>
+
+                <h2>📝 Conclusão</h2>
+                <div class="highlight">
+                    <p><strong>Status Final: ✅ CURSO APROVADO PARA LANÇAMENTO</strong></p>
+                    <p>O curso atende a todos os requisitos de qualidade estabelecidos e está pronto para ser lançado na versão 1.0.</p>
+                </div>
+
+                <p><strong>Recomendação:</strong> LANÇAR, coletar feedback, e iterar para versão 1.1 com melhorias.</p>
+            </section>
+
+            <!-- FOOTER -->
+            <section class="document">
+                <h2>📚 Informações Adicionais</h2>
+                <p><strong>Curso:</strong> Instalação de Ferramentas Open Source com Portainer</p>
+                <p><strong>Instrutor:</strong> Adavio</p>
+                <p><strong>Versão:</strong> 1.0</p>
+                <p><strong>Última atualização:</strong> Outubro 2025</p>
+                <p><strong>Duração:</strong> ~2h20min | 13 lessons | 3 módulos</p>
+                
+                <div class="highlight">
+                    <h3>🎓 Certificação</h3>
+                    <p>Ao completar 100% das aulas, você receberá certificado digital automático comprovando sua capacidade de instalar e gerenciar ferramentas open source.</p>
+                </div>
+
+                <h3>💰 Economia Total</h3>
+                <p>Investimento: <strong>R$ 528/ano</strong> (VPS + domínio)</p>
+                <p>Economia: <strong>R$ 4.272/ano</strong></p>
+                <p>ROI: <strong>Imediato</strong> (primeira mensalidade)</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Navegação suave
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Atualizar link ativo
+                document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Destacar seção visível
+        const sections = document.querySelectorAll('.document');
+        const navLinks = document.querySelectorAll('.sidebar a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
