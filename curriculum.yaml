@@ -1,0 +1,488 @@
+course:
+  id: instalacao-ferramentas-opensource-portainer
+  title: "Instalação de Ferramentas Open Source com Portainer"
+  slug: opensource-portainer-docker
+  version: "1.0"
+  created_at: "2025-10-17"
+  updated_at: "2025-10-17"
+  
+  instructor:
+    name: "Adavio"
+    credentials:
+      - "Técnico de Automações com n8n"
+      - "Desenvolvedor Full Stack"
+      - "Especialista em Atendimento ao Aluno"
+    
+    voice_profile:
+      type: custom
+      tone: motivational_technical
+      fidelity_target: 90
+      
+      verbal_markers:
+        - "Fala lendário"
+        - "Parabéns lendário"
+        - "Olha só isso aqui"
+        - "Vamos ver na prática"
+        - "Isso faz parte"
+        - "Me conta aqui como foi"
+        - "Fique à vontade para encaminhar no suporte"
+      
+      communication_style:
+        - "Técnico mas acessível"
+        - "Motivacional constante"
+        - "Usa analogias visuais"
+        - "Celebra vitórias"
+        - "Encoraja autonomia"
+      
+      metaphors:
+        - "Docker é como um navio com containers"
+        - "VPS é como um apartamento em um prédio"
+        - "Containers são como apartamentos isolados"
+      
+      teaching_philosophy:
+        approach: "Prática primeiro, teoria contextualizada"
+        belief: "Autonomia através de microlearning"
+        structure: "Taxonomia de Bloom + Scaffolding progressivo"
+  
+  target_audience:
+    demographics:
+      age_range: "25-35"
+      professions:
+        - "Empresários"
+        - "Freelancers"
+        - "Empreendedores digitais"
+      
+    psychographics:
+      technical_level: "zero" # totalmente leigo
+      current_pain: "Pagar caro por ferramentas cloud"
+      motivation: "Economizar e ter autonomia tecnológica"
+      time_available: "2 horas totais"
+      
+    prior_knowledge:
+      docker: false
+      vps: false
+      linux: false
+      programming: false
+      
+  learning_objectives:
+    primary: "Instalar qualquer ferramenta open source com autonomia usando Docker, Portainer e OrionDesign"
+    
+    transformation:
+      from: "Pagante de ferramentas cloud (R$ 400/mês)"
+      to: "Usuário autônomo de open source (R$ 40/mês)"
+      
+    secondary_objectives:
+      - "Contratar e configurar VPS profissional"
+      - "Dominar Docker e Portainer"
+      - "Configurar domínios e DNS"
+      - "Resolver problemas técnicos básicos"
+      - "Garantir segurança das ferramentas"
+      - "Monetizar conhecimento adquirido"
+  
+  course_structure:
+    total_duration_minutes: 140
+    total_modules: 3
+    total_lessons: 13
+    
+    format:
+      video: true
+      text: false
+      mixed: false
+      
+    lesson_duration:
+      min_minutes: 5
+      max_minutes: 15
+      average_minutes: 10
+      
+    assessment_type:
+      quizzes: true
+      quizzes_per_lesson: 1
+      questions_per_quiz: 5
+      
+      practical_projects: true
+      final_project: true
+      
+    pedagogy:
+      framework: "Taxonomia de Bloom + Microlearning"
+      theory_practice_ratio: "20/80"
+      scaffolding: "Progressivo (simples → complexo)"
+      
+  modules:
+    - id: module_01
+      number: 1
+      title: "Fundamentos e Preparação"
+      duration_minutes: 40
+      objective: "Preparar ambiente completo para instalações"
+      
+      bloom_distribution:
+        remember: 20
+        understand: 40
+        apply: 40
+        analyze: 0
+        create: 0
+        evaluate: 0
+      
+      lessons:
+        - id: lesson_1_1
+          number: 1.1
+          title: "Bem-vindo + O Que Você Vai Conquistar"
+          duration_minutes: 5
+          bloom_level: "remember"
+          tools: []
+          deliverables: []
+          
+        - id: lesson_1_2
+          number: 1.2
+          title: "Entendendo VPS, Docker e Portainer"
+          duration_minutes: 10
+          bloom_level: "understand"
+          tools: []
+          deliverables: []
+          
+        - id: lesson_1_3
+          number: 1.3
+          title: "Escolhendo e Contratando Sua VPS"
+          duration_minutes: 10
+          bloom_level: "apply"
+          tools:
+            - "Hostinger"
+            - "Contabo"
+          deliverables:
+            - "VPS contratada"
+            - "IP e credenciais anotados"
+            
+        - id: lesson_1_4
+          number: 1.4
+          title: "Configurando Domínio e DNS"
+          duration_minutes: 10
+          bloom_level: "apply"
+          tools:
+            - "Registro.br"
+            - "Hostinger (domínios)"
+          deliverables:
+            - "Domínio registrado"
+            - "DNS configurado"
+            
+        - id: lesson_1_5
+          number: 1.5
+          title: "Instalando Docker e Portainer"
+          duration_minutes: 15
+          bloom_level: "apply"
+          tools:
+            - "SSH"
+            - "Docker"
+            - "Portainer"
+          deliverables:
+            - "Docker instalado"
+            - "Portainer acessível"
+    
+    - id: module_02
+      number: 2
+      title: "Suas Primeiras Instalações"
+      duration_minutes: 50
+      objective: "Instalar 2 ferramentas funcionando (n8n + Chatwoot)"
+      
+      bloom_distribution:
+        remember: 0
+        understand: 0
+        apply: 80
+        analyze: 20
+        create: 0
+        evaluate: 0
+      
+      lessons:
+        - id: lesson_2_1
+          number: 2.1
+          title: "Instalando OrionDesign (Conceito de Stacks)"
+          duration_minutes: 15
+          bloom_level: "apply"
+          tools:
+            - "Portainer"
+            - "OrionDesign"
+          deliverables:
+            - "OrionDesign instalado"
+            
+        - id: lesson_2_2
+          number: 2.2
+          title: "Sua Primeira Ferramenta: n8n"
+          duration_minutes: 15
+          bloom_level: "apply"
+          tools:
+            - "Portainer"
+            - "OrionDesign"
+            - "n8n"
+          deliverables:
+            - "n8n instalado e rodando"
+            - "Workflow de teste funcionando"
+            
+        - id: lesson_2_3
+          number: 2.3
+          title: "Segunda Ferramenta: Chatwoot"
+          duration_minutes: 15
+          bloom_level: "apply"
+          tools:
+            - "Portainer"
+            - "OrionDesign"
+            - "Chatwoot"
+          deliverables:
+            - "Chatwoot instalado e rodando"
+            - "Inbox de teste configurado"
+            
+        - id: lesson_2_4
+          number: 2.4
+          title: "Troubleshooting Comum"
+          duration_minutes: 5
+          bloom_level: "analyze"
+          tools:
+            - "Portainer (logs)"
+          deliverables: []
+    
+    - id: module_03
+      number: 3
+      title: "Projeto Final e Autonomia"
+      duration_minutes: 30
+      objective: "Instalar 3ª ferramenta + segurança + monetização"
+      
+      bloom_distribution:
+        remember: 0
+        understand: 15
+        apply: 50
+        analyze: 0
+        create: 30
+        evaluate: 5
+      
+      lessons:
+        - id: lesson_3_1
+          number: 3.1
+          title: "Instalando Sua Terceira Ferramenta (Escolha Livre)"
+          duration_minutes: 15
+          bloom_level: "create"
+          tools:
+            - "Portainer"
+            - "OrionDesign"
+            - "Evolution API / NocoDB / Supabase / Baserow (escolha do aluno)"
+          deliverables:
+            - "3ª ferramenta instalada"
+            - "Demonstração de autonomia"
+            
+        - id: lesson_3_2
+          number: 3.2
+          title: "Segurança Básica e Backups"
+          duration_minutes: 10
+          bloom_level: "apply"
+          tools:
+            - "UFW (firewall)"
+            - "SSH"
+            - "Portainer (backups)"
+          deliverables:
+            - "Firewall configurado"
+            - "Porta SSH alterada"
+            - "Backup criado"
+            
+        - id: lesson_3_3
+          number: 3.3
+          title: "Próximos Passos e Monetização"
+          duration_minutes: 5
+          bloom_level: "evaluate"
+          tools: []
+          deliverables:
+            - "Certificado de conclusão"
+  
+  tools_stack:
+    infrastructure:
+      - name: "VPS"
+        providers:
+          - "Hostinger"
+          - "Contabo"
+        cost: "R$ 40/mês"
+        required: true
+        
+      - name: "Domínio"
+        providers:
+          - "Registro.br"
+          - "Hostinger"
+        cost: "R$ 50/ano"
+        required: true
+    
+    core_technologies:
+      - name: "Docker"
+        version: "latest"
+        cost: "free"
+        required: true
+        
+      - name: "Portainer"
+        version: "latest"
+        cost: "free"
+        required: true
+        
+      - name: "OrionDesign"
+        version: "latest"
+        cost: "free"
+        required: true
+    
+    applications_taught:
+      - name: "n8n"
+        category: "automação"
+        cloud_cost: "R$ 150/mês"
+        self_hosted_cost: "free"
+        required: true
+        
+      - name: "Chatwoot"
+        category: "atendimento"
+        cloud_cost: "R$ 100/mês"
+        self_hosted_cost: "free"
+        required: true
+        
+      - name: "Evolution API"
+        category: "whatsapp"
+        cloud_cost: "R$ 80/mês"
+        self_hosted_cost: "free"
+        required: false
+        
+      - name: "NocoDB"
+        category: "banco de dados"
+        cloud_cost: "R$ 50/mês"
+        self_hosted_cost: "free"
+        required: false
+        
+      - name: "Supabase"
+        category: "backend"
+        cloud_cost: "R$ 80/mês"
+        self_hosted_cost: "free"
+        required: false
+        
+      - name: "Baserow"
+        category: "planilhas"
+        cloud_cost: "R$ 40/mês"
+        self_hosted_cost: "free"
+        required: false
+  
+  economics:
+    investment:
+      vps_monthly: 40
+      domain_yearly: 50
+      domain_monthly: 4.17
+      total_monthly: 44.17
+      total_yearly: 530
+      
+    cloud_costs_before:
+      n8n: 150
+      chatwoot: 100
+      database: 80
+      others: 70
+      total_monthly: 400
+      total_yearly: 4800
+      
+    savings:
+      monthly: 355.83
+      yearly: 4270
+      payback_period_days: 0 # ROI imediato
+      
+    monetization_potential:
+      installation_service:
+        price_range: "R$ 300-800 por instalação"
+        time_per_project: "1-2 horas"
+        
+      maintenance_packages:
+        price_range: "R$ 200-500/mês por cliente"
+        service: "Gerenciar e atualizar ferramentas"
+        
+      consulting:
+        hourly_rate: "R$ 100-300/hora"
+        service: "Consultoria em automações e open source"
+  
+  assessment:
+    quizzes:
+      total: 12
+      questions_per_quiz: 5
+      total_questions: 60
+      format: "multiple_choice"
+      passing_score: 70
+      
+    practical_projects:
+      total: 3
+      projects:
+        - "Instalar n8n + criar workflow de teste"
+        - "Instalar Chatwoot + configurar inbox"
+        - "Instalar ferramenta de escolha livre"
+        
+    final_project:
+      title: "Stack Completa de Ferramentas Open Source"
+      description: "3 ferramentas rodando + VPS segura + backups"
+      deliverables:
+        - "n8n funcionando"
+        - "Chatwoot funcionando"
+        - "3ª ferramenta funcionando"
+        - "Firewall configurado"
+        - "Backup realizado"
+      
+    certification:
+      type: "automática"
+      criteria:
+        - "Assistir 100% das aulas"
+        - "Não há requisito de nota mínima em quizzes"
+      issuer: "Adavio - Cursos de Tecnologia"
+      format: "digital"
+  
+  support_materials:
+    included:
+      - name: "Checklist de Setup de VPS"
+        file: "checklist-setup-vps.md"
+        description: "Passo a passo de contratação e configuração inicial"
+        
+      - name: "Biblioteca de Comandos Docker"
+        file: "biblioteca-comandos-docker.md"
+        description: "Comandos mais usados, copy-paste ready"
+        
+      - name: "Troubleshooting Guide"
+        file: "troubleshooting-comum.md"
+        description: "Erros comuns e soluções passo a passo"
+        
+      - name: "Lista de Ferramentas Open Source"
+        file: "lista-ferramentas-opensource.md"
+        description: "50+ ferramentas recomendadas além das ensinadas"
+        
+      - name: "Templates Docker Compose"
+        file: "templates-docker-compose.md"
+        description: "Templates prontos para facilitar instalações futuras"
+        
+      - name: "Guia de Segurança de VPS"
+        file: "guia-seguranca-vps.md"
+        description: "Firewall, senhas, backups e boas práticas"
+  
+  quality_metrics:
+    voice_fidelity_target: 90
+    technical_accuracy_target: 95
+    pedagogical_flow_target: 95
+    assessment_alignment_target: 90
+    commercial_viability_target: 90
+    
+  metadata:
+    language: "pt-BR"
+    difficulty: "beginner"
+    prerequisites: "Nenhum"
+    completion_time_estimate: "2 horas"
+    
+    tags:
+      - "docker"
+      - "portainer"
+      - "open source"
+      - "automação"
+      - "self-hosted"
+      - "VPS"
+      - "economia"
+      - "autonomia"
+      - "n8n"
+      - "chatwoot"
+      
+    categories:
+      - "Tecnologia"
+      - "DevOps"
+      - "Automação"
+      - "Infraestrutura"
+      
+    suitable_for:
+      - "Empresários sem conhecimento técnico"
+      - "Freelancers buscando economia"
+      - "Empreendedores digitais"
+      - "Profissionais de automação"
