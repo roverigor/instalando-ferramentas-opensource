@@ -1,0 +1,436 @@
+# 🔧 Checklist de Manutenção Mensal
+
+**Objetivo:** Manter suas ferramentas atualizadas, seguras e funcionando perfeitamente.
+
+**Tempo estimado:** 30-60 minutos por mês
+
+---
+
+## 📅 Rotina Recomendada
+
+### **Semanal (5-10 min):**
+- Verificar logs de erros
+- Monitorar uso de recursos
+
+### **Mensal (30-60 min):**
+- Atualizar ferramentas
+- Fazer backups
+- Limpeza de recursos
+
+### **Trimestral (1-2 horas):**
+- Atualizar Docker e Portainer
+- Atualizar sistema operacional
+- Revisar segurança
+- Testar restauração de backups
+
+---
+
+## 📋 CHECKLIST MENSAL COMPLETA
+
+Copie esta checklist e execute mensalmente:
+
+---
+
+### **🗓️ MÊS: _____ / ANO: _____**
+
+---
+
+## ✅ FASE 1: PREPARAÇÃO (5 min)
+
+- [ ] Acessar Portainer (`http://SEU_IP:9000`)
+- [ ] Verificar data da última manutenção
+- [ ] Anotar data/hora de início: _____
+
+---
+
+## 💾 FASE 2: BACKUPS (10 min)
+
+### Backup de Stacks
+
+Para CADA stack (n8n, Chatwoot, etc.):
+
+- [ ] **n8n:**
+  - [ ] Portainer → Stacks → n8n
+  - [ ] Clicar em "Editor"
+  - [ ] Copiar YAML completo
+  - [ ] Colar em arquivo local: `backup-n8n-2025-10.yaml`
+  - [ ] Salvar em local seguro
+
+- [ ] **Chatwoot:**
+  - [ ] Portainer → Stacks → chatwoot
+  - [ ] Clicar em "Editor"
+  - [ ] Copiar YAML completo
+  - [ ] Colar em arquivo local: `backup-chatwoot-2025-10.yaml`
+  - [ ] Salvar em local seguro
+
+- [ ] **OrionDesign:**
+  - [ ] Portainer → Stacks → oriondesign
+  - [ ] Clicar em "Editor"
+  - [ ] Copiar YAML completo
+  - [ ] Colar em arquivo local: `backup-oriondesign-2025-10.yaml`
+  - [ ] Salvar em local seguro
+
+- [ ] **Outras ferramentas:**
+  - [ ] Repetir processo para cada ferramenta instalada
+  - [ ] Nomear: `backup-NOME_FERRAMENTA-2025-10.yaml`
+
+### Backup de Volumes (Dados)
+
+- [ ] Via provedor VPS (se disponível):
+  - [ ] Acessar painel do provedor (Hostinger/Contabo)
+  - [ ] Criar snapshot/backup da VPS
+  - [ ] Anotar data do snapshot: _____
+
+---
+
+## 🔍 FASE 3: VERIFICAÇÃO DE VERSÕES (10 min)
+
+Para CADA ferramenta, verificar versão atual vs. disponível:
+
+### n8n
+
+- [ ] Acessar: https://hub.docker.com/r/n8nio/n8n/tags
+- [ ] Versão atual instalada: _____
+- [ ] Última versão disponível: _____
+- [ ] Ler changelog: https://docs.n8n.io/release-notes/
+- [ ] Há atualizações críticas/segurança? [ ] Sim [ ] Não
+- [ ] Decisão: [ ] Atualizar agora [ ] Aguardar
+
+### Chatwoot
+
+- [ ] Acessar: https://hub.docker.com/r/chatwoot/chatwoot/tags
+- [ ] Versão atual instalada: _____
+- [ ] Última versão disponível: _____
+- [ ] Ler changelog: https://www.chatwoot.com/changelog
+- [ ] Há atualizações críticas/segurança? [ ] Sim [ ] Não
+- [ ] Decisão: [ ] Atualizar agora [ ] Aguardar
+
+### Outras Ferramentas
+
+- [ ] Repetir processo para cada ferramenta
+- [ ] Anotar versões e decisões
+
+---
+
+## 🚀 FASE 4: ATUALIZAÇÕES (15-20 min)
+
+**REGRA DE OURO:** Atualize UMA ferramenta por vez e teste antes de continuar!
+
+### Atualização Individual (Repita para cada ferramenta)
+
+**Ferramenta: _____**
+
+- [ ] **PRÉ-ATUALIZAÇÃO:**
+  - [ ] Backup feito? ✅
+  - [ ] Changelog lido? ✅
+  - [ ] Anotado versão atual: _____
+  - [ ] Anotado versão nova: _____
+
+- [ ] **ATUALIZAÇÃO:**
+  - [ ] Portainer → Stacks → [nome da ferramenta]
+  - [ ] Clicar em "Editor"
+  - [ ] Localizar linha da imagem (ex: `image: n8nio/n8n:1.25.0`)
+  - [ ] Alterar tag para nova versão (ex: `image: n8nio/n8n:1.26.0`)
+  - [ ] Clicar em "Update the stack"
+  - [ ] Aguardar download (1-5 min)
+  - [ ] Container reiniciado automaticamente
+
+- [ ] **PÓS-ATUALIZAÇÃO:**
+  - [ ] Acessar ferramenta via navegador
+  - [ ] Fazer login
+  - [ ] Testar funcionalidade principal
+  - [ ] Verificar logs (erros?)
+  - [ ] ✅ Funcionando normalmente
+  - [ ] ❌ Problema detectado → **ROLLBACK imediato!**
+
+### Em Caso de Problema (Rollback)
+
+Se algo deu errado:
+
+- [ ] Portainer → Stacks → [nome da ferramenta]
+- [ ] Clicar em "Editor"
+- [ ] Voltar tag para versão anterior
+- [ ] "Update the stack"
+- [ ] Verificar funcionamento
+- [ ] Anotar problema encontrado: _____
+- [ ] Investigar causa antes de tentar atualizar novamente
+
+---
+
+## 🧹 FASE 5: LIMPEZA DE RECURSOS (5 min)
+
+**⚠️ ATENÇÃO:** Só execute se tiver backups! Operações irreversíveis.
+
+### Limpar Imagens Antigas
+
+- [ ] Acessar VPS via SSH
+- [ ] Executar comando:
+  ```bash
+  docker image prune -a
+  ```
+- [ ] Confirmar (digite `y`)
+- [ ] Espaço liberado: _____ MB
+
+### Limpar Volumes Órfãos
+
+- [ ] Executar comando:
+  ```bash
+  docker volume prune
+  ```
+- [ ] ⚠️ **CUIDADO:** Só confirme se tiver certeza que são volumes não usados
+- [ ] Confirmar (digite `y`)
+- [ ] Volumes removidos: _____
+
+### Limpar Containers Parados
+
+- [ ] Executar comando:
+  ```bash
+  docker container prune
+  ```
+- [ ] Confirmar (digite `y`)
+- [ ] Containers removidos: _____
+
+---
+
+## 📊 FASE 6: MONITORAMENTO DE RECURSOS (5 min)
+
+### Uso de Disco
+
+- [ ] Portainer → Host → Dashboard
+- [ ] Disco usado: _____ % (de _____ GB total)
+- [ ] Disco disponível: _____ GB
+- [ ] ⚠️ Se > 80% usado: [ ] Considerar upgrade ou limpar mais
+
+### Uso de RAM
+
+- [ ] RAM usada: _____ % (de _____ GB total)
+- [ ] RAM disponível: _____ GB
+- [ ] ⚠️ Se > 80% usado: [ ] Considerar upgrade de VPS
+
+### Uso de CPU
+
+- [ ] CPU média: _____ %
+- [ ] ⚠️ Se constantemente > 80%: [ ] Investigar processo ou upgrade
+
+---
+
+## 🔒 FASE 7: VERIFICAÇÃO DE SEGURANÇA (5 min)
+
+### Firewall
+
+- [ ] Acessar VPS via SSH
+- [ ] Verificar status do UFW:
+  ```bash
+  sudo ufw status
+  ```
+- [ ] Status: [ ] Active [ ] Inactive
+- [ ] Se inactive: [ ] Ativar imediatamente!
+
+### Portas Abertas
+
+- [ ] Verificar portas:
+  ```bash
+  sudo netstat -tulpn | grep LISTEN
+  ```
+- [ ] Portas esperadas abertas:
+  - [ ] 22 (SSH - ou porta customizada)
+  - [ ] 80 (HTTP)
+  - [ ] 443 (HTTPS)
+  - [ ] 9000 (Portainer)
+  - [ ] Outras necessárias: _____
+- [ ] Portas inesperadas? [ ] Sim [ ] Não
+  - Se sim, investigar: _____
+
+### Senhas e Credenciais
+
+- [ ] Senhas fortes em todas as ferramentas? [ ] Sim [ ] Não
+- [ ] Senhas únicas (não repetidas)? [ ] Sim [ ] Não
+- [ ] Usando gerenciador de senhas? [ ] Sim [ ] Não
+
+---
+
+## 📝 FASE 8: LOGS E ERROS (5 min)
+
+### Verificar Logs de Cada Ferramenta
+
+Para CADA ferramenta:
+
+**n8n:**
+- [ ] Portainer → Containers → n8n → Logs
+- [ ] Erros detectados? [ ] Sim [ ] Não
+- [ ] Se sim, anotar: _____
+
+**Chatwoot:**
+- [ ] Portainer → Containers → chatwoot-web → Logs
+- [ ] Erros detectados? [ ] Sim [ ] Não
+- [ ] Se sim, anotar: _____
+
+**Outras Ferramentas:**
+- [ ] Repetir para cada uma
+- [ ] Anotar problemas encontrados: _____
+
+### Logs do Sistema
+
+- [ ] Via SSH, verificar logs do sistema:
+  ```bash
+  sudo journalctl -xe --no-pager | tail -50
+  ```
+- [ ] Erros críticos? [ ] Sim [ ] Não
+- [ ] Se sim, anotar: _____
+
+---
+
+## 🧪 FASE 9: TESTES FUNCIONAIS (5 min)
+
+### Teste de Acesso
+
+Para CADA ferramenta:
+
+- [ ] **n8n** (`https://n8n.seudominio.com`):
+  - [ ] Site abre
+  - [ ] HTTPS funcionando (cadeado verde)
+  - [ ] Login funciona
+  - [ ] Dashboard carrega
+
+- [ ] **Chatwoot** (`https://chatwoot.seudominio.com`):
+  - [ ] Site abre
+  - [ ] HTTPS funcionando
+  - [ ] Login funciona
+  - [ ] Dashboard carrega
+
+- [ ] **Outras ferramentas:**
+  - [ ] Testar cada uma
+  - [ ] Anotar problemas: _____
+
+### Teste de Funcionalidade Básica
+
+- [ ] **n8n:** Executar workflow de teste
+- [ ] **Chatwoot:** Enviar mensagem de teste
+- [ ] **Outras:** Executar ação básica em cada ferramenta
+
+---
+
+## 📋 FASE 10: DOCUMENTAÇÃO (5 min)
+
+### Registrar Manutenção
+
+- [ ] Data/hora de conclusão: _____
+- [ ] Tempo total gasto: _____ minutos
+- [ ] Ferramentas atualizadas:
+  - [ ] n8n: versão _____ → _____
+  - [ ] Chatwoot: versão _____ → _____
+  - [ ] Outras: _____
+
+### Problemas Encontrados
+
+- [ ] Problema 1: _____
+  - [ ] Resolvido? [ ] Sim [ ] Não
+  - [ ] Solução aplicada: _____
+
+- [ ] Problema 2: _____
+  - [ ] Resolvido? [ ] Sim [ ] Não
+  - [ ] Solução aplicada: _____
+
+### Ações Pendentes
+
+- [ ] Ação 1: _____
+  - [ ] Prazo: _____
+
+- [ ] Ação 2: _____
+  - [ ] Prazo: _____
+
+---
+
+## 🎯 RESULTADO FINAL
+
+### Status Geral
+
+- [ ] ✅ Todas as ferramentas funcionando
+- [ ] ✅ Backups criados
+- [ ] ✅ Atualizações aplicadas
+- [ ] ✅ Limpeza realizada
+- [ ] ✅ Segurança verificada
+- [ ] ✅ Logs revisados
+- [ ] ✅ Testes passando
+
+### Pontuação
+
+- **Total de itens:** _____
+- **Itens concluídos:** _____
+- **Percentual:** _____ %
+
+**Meta:** ≥ 95% de conclusão
+
+---
+
+## 📅 PRÓXIMA MANUTENÇÃO
+
+- [ ] Agendar próxima manutenção para: _____
+- [ ] Criar lembrete/alerta
+
+---
+
+## 🚨 AÇÕES URGENTES (Se Aplicável)
+
+**Se você encontrou algum dos problemas abaixo, AÇÃO IMEDIATA necessária:**
+
+- [ ] Disco > 90% usado → Limpar ou expandir AGORA
+- [ ] RAM > 90% usado → Investigar/upgrade URGENTE
+- [ ] Firewall desativado → Ativar AGORA
+- [ ] Erro crítico nos logs → Investigar IMEDIATAMENTE
+- [ ] Ferramenta não acessível → Resolver AGORA
+- [ ] Certificado SSL expirado → Renovar IMEDIATAMENTE
+
+---
+
+## 💡 DICAS PRO
+
+### Automatização Futura
+
+Considere criar scripts para automatizar:
+- Backups automáticos (cronjob)
+- Alertas de uso de recursos
+- Verificação de containers parados
+
+### Monitoramento Contínuo
+
+Considere instalar ferramentas de monitoramento:
+- **Uptime Kuma** (monitoramento de uptime)
+- **Netdata** (monitoramento de recursos em tempo real)
+- **Portainer Edge Agent** (monitoramento remoto)
+
+### Documentação
+
+Mantenha um log histórico:
+- Crie uma planilha ou documento
+- Registre cada manutenção
+- Anote problemas recorrentes
+- Documente soluções aplicadas
+
+---
+
+## 📚 RECURSOS ADICIONAIS
+
+- **Documentação Docker:** https://docs.docker.com
+- **Documentação Portainer:** https://docs.portainer.io
+- **Melhores práticas Docker:** https://docs.docker.com/develop/dev-best-practices/
+
+---
+
+## ✅ ASSINATURA
+
+Manutenção realizada por: _____  
+Data: _____ / _____ / _____  
+Assinatura: _____
+
+---
+
+**Última atualização:** Outubro 2025  
+**Versão:** 1.0  
+**Criado por:** Adavio - Curso de Instalação de Ferramentas Open Source
+
+---
+
+## 📥 DOWNLOAD DESTA CHECKLIST
+
+**Dica:** Salve este arquivo como `checklist-manutencao.md` e mantenha uma cópia local. A cada mês, faça uma cópia com a data (ex: `checklist-2025-10.md`) e preencha.
