@@ -1,0 +1,567 @@
+# 🚨 Troubleshooting Comum
+
+**Objetivo:** Resolver os problemas mais comuns ao instalar e gerenciar ferramentas open source.
+
+---
+
+## 📋 Índice
+
+1. [Problemas de DNS e Acesso](#dns-e-acesso)
+2. [Problemas de SSL/HTTPS](#ssl-https)
+3. [Problemas de Containers](#containers)
+4. [Problemas de Recursos (RAM/CPU/Disco)](#recursos)
+5. [Problemas de Portas](#portas)
+6. [Problemas de Login/Credenciais](#login)
+7. [Problemas de Atualização](#atualizacao)
+8. [Problemas Específicos por Ferramenta](#especificos)
+
+---
+
+## 🌐 Problemas de DNS e Acesso
+
+### Problema: "Site não encontrado" (ERR_NAME_NOT_RESOLVED)
+
+**Sintomas:**
+- Navegador mostra erro "não foi possível encontrar o servidor"
+- URL: `https://n8n.seudominio.com` não abre
+
+**Causas Possíveis:**
+1. DNS não propagou ainda
+2. DNS configurado incorretamente no Cloudflare
+3. Nameservers não alterados no registrador
+
+**Soluções:**
+
+**Solução 1: Aguardar Propagação**
+```
+Tempo: 2-24 horas (geralmente 5-30 min)
+Ação: Aguardar e tentar novamente
+```
+
+**Solução 2: Verificar DNS no Cloudflare**
+```
+1. Cloudflare → DNS → Records
+2. Verificar:
+   - Registro A para @ → IP da VPS ✓
+   - Registro A para * → IP da VPS ✓
+   - Proxy status: Proxied (nuvem laranja) ✓
+3. Se faltando: adicionar registros
+```
+
+**Solução 3: Verificar Nameservers**
+```
+1. Ir no registrador do domínio
+2. Verificar se nameservers são do Cloudflare
+3. Se não: alterar para os nameservers do Cloudflare
+```
+
+**Solução 4: Testar DNS Manualmente**
+```bash
+# Via SSH na VPS
+nslookup n8n.seudominio.com
+
+# Deve retornar o IP da sua VPS
+# Se não retornar: DNS não propagou ou está errado
+```
+
+---
+
+### Problema: "Este site não pode ser acessado" (ERR_CONNECTION_TIMED_OUT)
+
+**Sintomas:**
+- Navegador fica carregando e depois timeout
+- Demora muito e não conecta
+
+**Causas Possíveis:**
+1. Container não está rodando
+2. Firewall bloqueando portas
+3. VPS desligada
+
+**Soluções:**
+
+**Solução 1: Verificar Container**
+```
+1. Portainer → Containers
+2. Buscar container da ferramenta
+3. Status deve ser "running"
+4. Se "exited": clicar em "Start"
+5. Se em loop (restart): ver logs (problema na configuração)
+```
+
+**Solução 2: Verificar Firewall**
+```bash
+# Via SSH
+sudo ufw status
+
+# Deve mostrar:
+# 80/tcp ALLOW
+# 443/tcp ALLOW
+
+# Se bloqueado:
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw reload
+```
+
+**Solução 3: Verificar VPS**
+```
+1. Acessar painel do provedor (Hostinger/Contabo)
+2. Verificar status da VPS
+3. Se desligada: ligar
+```
+
+---
+
+## 🔒 Problemas de SSL/HTTPS
+
+### Problema: "Sua conexão não é privada" (ERR_CERT_INVALID)
+
+**Sintomas:**
+- Navegador bloqueia acesso
+- Certificado SSL inválido
+- Aviso de segurança
+
+**Causas Possíveis:**
+1. Certificado ainda não gerado (aguardar)
+2. Modo SSL/TLS incorreto no Cloudflare
+3. DNS não propagou
+
+**Soluções:**
+
+**Solução 1: Aguardar Geração**
+```
+Tempo: 5-15 minutos após DNS propagar
+Ação: Aguardar e recarregar página
+```
+
+**Solução 2: Verificar Modo SSL no Cloudflare**
+```
+1. Cloudflare → SSL/TLS → Overview
+2. Modo deve ser: "Full"
+3. Se diferente: mudar para "Full"
+4. Aguardar 5 minutos
+5. Limpar cache do navegador (Ctrl+Shift+Del)
+```
+
+**Solução 3: Forçar HTTPS**
+```
+1. Cloudflare → SSL/TLS → Edge Certificates
+2. "Always Use HTTPS" → ON
+3. Recarregar página
+```
+
+---
+
+### Problema: Loop Infinito (ERR_TOO_MANY_REDIRECTS)
+
+**Sintomas:**
+- Página fica redirecionando infinitamente
+- Navegador mostra erro "muitos redirecionamentos"
+
+**Causa:**
+- Modo SSL incorreto (geralmente "Flexible" com servidor HTTPS)
+
+**Solução:**
+```
+1. Cloudflare → SSL/TLS → Overview
+2. Mudar para: "Full"
+3. Limpar cache do navegador (Ctrl+F5)
+4. Recarregar página
+```
+
+---
+
+## 🐳 Problemas de Containers
+
+### Problema: Container em Loop (Restart Constante)
+
+**Sintomas:**
+- Portainer mostra container com status "restarting"
+- Container nunca fica "running" por mais de alguns segundos
+
+**Causas Possíveis:**
+1. Erro na configuração (variáveis incorretas)
+2. Falta de recursos (RAM/CPU insuficiente)
+3. Dependência faltando (banco de dados não iniciou)
+
+**Soluções:**
+
+**Solução 1: Ver Logs**
+```
+1. Portainer → Containers → [container problemático]
+2. Clicar em "Logs"
+3. Procurar mensagens de erro em vermelho
+4. Identificar causa específica
+```
+
+**Solução 2: Verificar Variáveis**
+```
+1. Portainer → Stacks → [sua stack]
+2. Clicar em "Editor"
+3. Revisar todas as variáveis:
+   - Senhas corretas?
+   - Domínios corretos?
+   - Emails corretos?
+4. Se erro: corrigir e "Update the stack"
+```
+
+**Solução 3: Verificar Recursos**
+```
+1. Portainer → Host → Dashboard
+2. Ver uso de RAM e CPU
+3. Se RAM > 90%: problema de recursos
+4. Solução: upgrade de VPS ou remover outras ferramentas
+```
+
+**Solução 4: Verificar Dependências**
+```
+Exemplo: Chatwoot precisa de PostgreSQL + Redis
+
+1. Ver logs de TODOS os containers da stack
+2. Verificar se banco de dados iniciou
+3. Se não: dar mais tempo (2-3 minutos)
+4. Se continuar: verificar logs do banco
+```
+
+---
+
+### Problema: Container Parado (Exited)
+
+**Sintomas:**
+- Portainer mostra status "exited"
+- Container não está rodando
+
+**Soluções:**
+
+**Solução 1: Iniciar Manualmente**
+```
+1. Portainer → Containers → [container parado]
+2. Clicar em "Start"
+3. Aguardar inicialização
+4. Se parar novamente: ver logs
+```
+
+**Solução 2: Reiniciar Stack Completa**
+```
+1. Portainer → Stacks → [sua stack]
+2. Clicar em "Stop this stack"
+3. Aguardar todos pararem
+4. Clicar em "Start this stack"
+5. Aguardar todos iniciarem
+```
+
+---
+
+## 💾 Problemas de Recursos
+
+### Problema: RAM Insuficiente
+
+**Sintomas:**
+- Containers parando sozinhos
+- VPS lenta
+- Erro "OOM" (Out of Memory) nos logs
+
+**Diagnóstico:**
+```
+1. Portainer → Host → Dashboard
+2. Ver uso de RAM
+3. Se > 90%: problema confirmado
+```
+
+**Soluções:**
+
+**Solução 1: Aumentar Swap (Paliativo)**
+```bash
+# Via SSH
+# Criar arquivo swap de 2GB
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
+# Tornar permanente
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+```
+
+**Solução 2: Upgrade de VPS (Definitivo)**
+```
+1. Acessar painel do provedor
+2. Fazer upgrade do plano
+3. Escolher plano com mais RAM
+4. Geralmente: 2GB → 4GB ou 8GB
+```
+
+**Solução 3: Otimizar Containers**
+```
+1. Remover ferramentas não utilizadas
+2. Limitar recursos de containers:
+   - Editar stack
+   - Adicionar limites de memória
+3. Usar versões "lite" quando disponível
+```
+
+---
+
+### Problema: Disco Cheio
+
+**Sintomas:**
+- Erro ao criar novos containers
+- Ferramentas não salvam dados
+- Logs mostram "no space left on device"
+
+**Diagnóstico:**
+```
+1. Portainer → Host → Dashboard
+2. Ver uso de disco
+3. Se > 90%: problema confirmado
+```
+
+**Soluções:**
+
+**Solução 1: Limpar Imagens Antigas**
+```bash
+# Via SSH
+docker image prune -a
+
+# Confirmar (digite y)
+# Isso remove imagens não usadas
+```
+
+**Solução 2: Limpar Volumes Órfãos**
+```bash
+# Via SSH
+docker volume prune
+
+# ⚠️ CUIDADO: só confirme se tiver backup
+# Isso remove volumes não conectados a containers
+```
+
+**Solução 3: Limpar Logs**
+```bash
+# Via SSH
+# Limpar logs de containers
+sudo sh -c 'truncate -s 0 /var/lib/docker/containers/*/*-json.log'
+```
+
+**Solução 4: Expandir Disco (Definitivo)**
+```
+1. Acessar painel do provedor
+2. Expandir disco da VPS
+3. Redimensionar partição:
+
+sudo resize2fs /dev/sda1
+```
+
+---
+
+## 🔌 Problemas de Portas
+
+### Problema: "Porta já em uso"
+
+**Sintomas:**
+- Erro ao criar container
+- Logs mostram "address already in use"
+
+**Diagnóstico:**
+```bash
+# Via SSH
+# Ver quais portas estão em uso
+sudo netstat -tulpn | grep LISTEN
+```
+
+**Solução:**
+```
+1. Identificar qual processo está usando a porta
+2. Parar o processo:
+   sudo systemctl stop [nome_servico]
+3. Ou mudar a porta no docker-compose:
+   - Editar stack
+   - Mudar porta (ex: 8080 → 8081)
+   - Update the stack
+```
+
+---
+
+## 🔐 Problemas de Login/Credenciais
+
+### Problema: "Credenciais Inválidas"
+
+**Sintomas:**
+- Não consegue fazer login
+- Senha/usuário incorretos
+
+**Causas Possíveis:**
+1. Digitou senha errada
+2. Variáveis configuradas incorretamente na stack
+3. Caps Lock ativado
+
+**Soluções:**
+
+**Solução 1: Verificar Variáveis**
+```
+1. Portainer → Stacks → [ferramenta]
+2. Clicar em "Editor"
+3. Procurar variáveis de auth:
+   - N8N_BASIC_AUTH_USER
+   - N8N_BASIC_AUTH_PASSWORD
+   - Ou equivalentes
+4. Anotar usuário e senha
+5. Tentar login novamente
+```
+
+**Solução 2: Resetar Credenciais**
+```
+1. Editar stack no Portainer
+2. Mudar senha/usuário nas variáveis
+3. "Update the stack"
+4. Container reinicia automaticamente
+5. Aguardar 1-2 minutos
+6. Tentar login com novas credenciais
+```
+
+---
+
+## 🔄 Problemas de Atualização
+
+### Problema: Atualização Quebrou Ferramenta
+
+**Sintomas:**
+- Após atualizar, ferramenta não funciona
+- Erro 500 ou página em branco
+- Funcionalidades pararam de funcionar
+
+**Solução: Rollback Imediato**
+```
+1. Portainer → Stacks → [ferramenta]
+2. Clicar em "Editor"
+3. Localizar linha da imagem:
+   Exemplo: image: n8nio/n8n:1.26.0
+4. Voltar para versão anterior:
+   Exemplo: image: n8nio/n8n:1.25.0
+5. "Update the stack"
+6. Aguardar container reiniciar
+7. Testar funcionalidade
+8. Se funcionou: sucesso!
+9. Investigar changelog da versão problemática
+```
+
+---
+
+## 🛠️ Problemas Específicos por Ferramenta
+
+### n8n
+
+**Problema: Workflows não executam**
+```
+Causa: Credenciais expiradas ou incorretas
+Solução:
+1. n8n → Credentials
+2. Testar cada credencial
+3. Atualizar as que falharam
+```
+
+**Problema: Webhook não responde**
+```
+Causa: Workflow desativado ou URL errada
+Solução:
+1. Verificar se workflow está ativo
+2. Verificar URL do webhook
+3. Testar com curl ou Postman
+```
+
+---
+
+### Chatwoot
+
+**Problema: Demora muito para iniciar**
+```
+Causa: Normal - Chatwoot é pesado
+Solução:
+1. Aguardar 3-5 minutos na primeira vez
+2. Ver logs: deve mostrar "Listening on..."
+3. Se > 10 min: verificar RAM disponível
+```
+
+**Problema: Inbox não envia mensagens**
+```
+Causa: Configuração de email/SMTP incorreta
+Solução:
+1. Chatwoot → Settings → Inboxes
+2. Verificar configurações do inbox
+3. Testar conexão
+```
+
+---
+
+### Evolution API
+
+**Problema: QR Code não aparece**
+```
+Causa: Instância não criada corretamente
+Solução:
+1. Recriar instância
+2. Aguardar 10 segundos
+3. QR Code deve aparecer
+```
+
+**Problema: WhatsApp desconecta**
+```
+Causa: Normal após algumas horas inativo
+Solução:
+1. Reconectar escaneando QR Code novamente
+2. Usar "always online" se disponível
+```
+
+---
+
+## 🆘 Quando Pedir Ajuda
+
+Se após seguir TODOS os troubleshootings acima o problema persistir:
+
+**Informações para Incluir no Suporte:**
+
+1. **Descrição do Problema:**
+   - O que você tentou fazer?
+   - O que aconteceu?
+   - O que você esperava que acontecesse?
+
+2. **Logs Completos:**
+   ```
+   Portainer → Containers → [container] → Logs
+   Copiar últimas 50-100 linhas
+   ```
+
+3. **Configuração:**
+   ```
+   - SO da VPS: Ubuntu 22.04
+   - RAM: X GB
+   - CPU: X cores
+   - Disco: X GB disponível
+   - Versão Docker: (docker --version)
+   - Versão Portainer: (ver no Portainer)
+   ```
+
+4. **Stack YAML:**
+   ```
+   Copiar conteúdo da stack (sem senhas!)
+   ```
+
+5. **Prints de Tela:**
+   - Erro no navegador
+   - Status no Portainer
+   - Configuração do Cloudflare
+
+---
+
+## 📚 Recursos Úteis
+
+- **Comunidade Docker:** https://forums.docker.com
+- **Documentação n8n:** https://docs.n8n.io
+- **Documentação Chatwoot:** https://www.chatwoot.com/docs
+- **Stack Overflow:** https://stackoverflow.com (busque seu erro)
+- **ChatGPT/Claude:** Cole o erro e peça ajuda
+
+---
+
+**Última atualização:** Outubro 2025  
+**Versão:** 1.0
