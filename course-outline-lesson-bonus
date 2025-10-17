@@ -1,0 +1,910 @@
+# 📋 Course Outline - Estrutura Detalhada
+
+**Curso:** Instalação de Ferramentas Open Source com Portainer  
+**Instrutor:** Adavio  
+**Duração Total:** ~2 horas  
+**Formato:** Vídeos gravados + Quizzes + Projetos práticos
+
+---
+
+## 🎯 Objetivo Geral do Curso
+
+Capacitar empresários e freelancers leigos em tecnologia a **instalar qualquer ferramenta open source** usando Docker, Portainer e OrionDesign, **economizando R$ 4.272/ano** e ganhando autonomia tecnológica.
+
+---
+
+## 👥 Perfil do Aluno (ICP)
+
+- **Idade:** 25-35 anos
+- **Profissão:** Empresários, freelancers
+- **Nível técnico:** Zero (totalmente leigo)
+- **Dor principal:** Pagar caro por ferramentas cloud
+- **Motivação:** Economizar e ter autonomia
+- **Tempo disponível:** 2 horas totais
+
+---
+
+## 📊 Estrutura Pedagógica
+
+- ✅ **Taxonomia de Bloom:** Progressão do lembrar → criar
+- ✅ **Microlearning:** Lessons de 5-15 min
+- ✅ **80% Prática / 20% Teoria**
+- ✅ **Scaffolding progressivo:** Do simples ao complexo
+- ✅ **Tom motivacional:** "Fala lendário!"
+
+---
+
+# 📚 MÓDULO 1: Fundamentos e Preparação
+
+**Duração:** ~40 minutos  
+**Objetivo:** Preparar o ambiente completo para instalações  
+**Entregáveis:** VPS contratada + Docker/Portainer instalados + Domínio configurado
+
+---
+
+## Lesson 1.1: Bem-vindo + O Que Você Vai Conquistar
+
+**Duração:** 5 minutos  
+**Formato:** Vídeo gravado  
+**Bloom Level:** Lembrar
+
+### Objetivos de Aprendizado:
+- [ ] Entender a economia que vai fazer (R$ 4.272/ano)
+- [ ] Visualizar as 3 ferramentas que vai instalar
+- [ ] Compreender a estrutura do curso
+- [ ] Sentir-se motivado para começar
+
+### Conteúdo:
+1. Apresentação do Adavio
+2. Problema: Custos de ferramentas cloud (R$ 400/mês)
+3. Solução: Open source + VPS (R$ 40/mês)
+4. Overview das 3 instalações práticas
+5. Estrutura dos 3 módulos
+6. Como aproveitar melhor o curso
+
+### Ferramentas Usadas:
+- Nenhuma (aula introdutória)
+
+### Entregáveis:
+- Nenhum
+
+### Quiz (após lesson):
+- 5 questões sobre o curso e economia
+
+---
+
+## Lesson 1.2: Entendendo VPS, Docker e Portainer
+
+**Duração:** 10 minutos  
+**Formato:** Vídeo gravado  
+**Bloom Level:** Compreender
+
+### Objetivos de Aprendizado:
+- [ ] Compreender o que é uma VPS (analogia do prédio)
+- [ ] Entender o que é Docker (analogia do container/navio)
+- [ ] Entender o que é Portainer (interface visual)
+- [ ] Compreender o conceito de OrionDesign
+
+### Conteúdo:
+1. **VPS (Virtual Private Server)**
+   - Analogia: "É como alugar um apartamento em um prédio"
+   - Diferença entre VPS e hospedagem compartilhada
+   - Por que você precisa de uma VPS
+
+2. **Docker**
+   - Analogia: "Docker é como um navio com containers"
+   - Cada ferramenta fica isolada em seu container
+   - Vantagens: portabilidade, isolamento, facilidade
+
+3. **Portainer**
+   - Interface visual para gerenciar Docker
+   - Você não vai precisar usar terminal/comandos complexos
+   - Demonstração visual da interface
+
+4. **OrionDesign**
+   - Facilitador de instalações
+   - Templates prontos para ferramentas populares
+
+### Ferramentas Usadas:
+- Slides/Imagens explicativas
+
+### Entregáveis:
+- Nenhum (aula conceitual)
+
+### Quiz (após lesson):
+- 5 questões sobre conceitos básicos
+
+---
+
+## Lesson 1.3: Escolhendo e Contratando Sua VPS
+
+**Duração:** 10 minutos  
+**Formato:** Vídeo gravado (screenshare)  
+**Bloom Level:** Aplicar
+
+### Objetivos de Aprendizado:
+- [ ] Escolher um provedor de VPS (Hostinger ou Contabo)
+- [ ] Entender os planos e custos
+- [ ] Contratar a VPS corretamente
+- [ ] Acessar o painel de controle da VPS
+
+### Conteúdo:
+1. **Comparação de Provedores**
+   - Hostinger: R$ 40/mês, interface amigável, suporte BR
+   - Contabo: R$ 35/mês, mais recursos, suporte internacional
+   - Qual escolher? (recomendação baseada no perfil)
+
+2. **Especificações Mínimas**
+   - 2 GB RAM (mínimo)
+   - 50 GB SSD
+   - 1 vCPU
+   - Ubuntu 22.04 LTS (sistema operacional)
+
+3. **Passo a Passo de Contratação**
+   - Criar conta no provedor
+   - Escolher plano
+   - Configurar VPS (SO, localização, SSH)
+   - Finalizar pagamento
+   - Receber credenciais de acesso
+
+4. **Primeiro Acesso**
+   - Acessar painel de controle
+   - Anotar IP da VPS
+   - Anotar senha root
+
+### Ferramentas Usadas:
+- Hostinger ou Contabo (escolha do aluno)
+
+### Entregáveis:
+- [ ] VPS contratada e funcionando
+- [ ] IP e credenciais anotados
+
+### Quiz (após lesson):
+- 5 questões sobre escolha de VPS e configurações
+
+---
+
+## Lesson 1.4: Configurando Cloudflare (Domínio + DNS + SSL)
+
+**Duração:** 15 minutos  
+**Formato:** Vídeo gravado (screenshare)  
+**Bloom Level:** Aplicar
+
+### Objetivos de Aprendizado:
+- [ ] Entender por que você precisa de um domínio
+- [ ] Registrar um domínio
+- [ ] Configurar Cloudflare como DNS manager
+- [ ] Ativar proteção e SSL automático
+- [ ] Apontar domínio para a VPS
+
+### Conteúdo:
+1. **Por Que Você Precisa de um Domínio?**
+   - Acessar ferramentas com nomes amigáveis
+   - Ex: `n8n.seudominio.com` ao invés de `123.45.67.89:5678`
+   - Certificado SSL (HTTPS) automático
+   - Proteção DDoS grátis com Cloudflare
+
+2. **Onde Registrar Domínio**
+   - Registro.br (R$ 40/ano - .com.br)
+   - Hostinger (R$ 50/ano - .com)
+   - Cloudflare Registrar (R$ 45/ano - .com - preço de custo)
+   - Recomendação: qualquer um serve, vamos usar Cloudflare para DNS
+
+3. **Por Que Usar Cloudflare?**
+   - DNS gratuito e super rápido
+   - SSL/TLS automático (certificado grátis)
+   - Proteção DDoS
+   - Cache de conteúdo
+   - Interface simples e poderosa
+
+4. **Configurando Cloudflare (Passo a Passo)**
+   - Criar conta gratuita no Cloudflare
+   - Adicionar seu domínio
+   - Cloudflare vai escanear registros DNS existentes
+   - Anotar os nameservers do Cloudflare (exemplo: `alex.ns.cloudflare.com`)
+   - Ir no painel do registrador (onde comprou o domínio)
+   - Alterar nameservers para os do Cloudflare
+   - Aguardar propagação (2-24h, geralmente 5-10 min)
+
+5. **Configuração de DNS no Cloudflare**
+   - Criar registro tipo A: `@` → IP da VPS (proxy ON - nuvem laranja)
+   - Criar registro tipo A: `*` → IP da VPS (wildcard para subdomínios - proxy ON)
+   - Entender diferença: nuvem laranja (proxied) vs cinza (DNS only)
+
+6. **Configuração SSL/TLS**
+   - Ir em SSL/TLS → Overview
+   - Modo: "Full" (recomendado)
+   - SSL automático ativado
+   - Edge Certificates: Always Use HTTPS (ON)
+
+7. **Teste de Funcionamento**
+   - Verificar status no Cloudflare (Active)
+   - Testar acesso: `https://seudominio.com`
+   - Verificar certificado SSL (cadeado verde)
+
+### Ferramentas Usadas:
+- Registro.br / Hostinger / Cloudflare Registrar (registro de domínio)
+- Cloudflare (DNS manager + SSL + proteção)
+
+### Entregáveis:
+- [ ] Domínio registrado
+- [ ] Cloudflare configurado como DNS
+- [ ] Nameservers alterados e propagados
+- [ ] SSL/TLS ativado
+- [ ] Domínio apontando para VPS (teste OK)
+
+### Quiz (após lesson):
+- 5 questões sobre domínios, DNS e Cloudflare
+
+---
+
+## Lesson 1.5: Instalando Docker e Portainer
+
+**Duração:** 15 minutos  
+**Formato:** Vídeo gravado (screenshare)  
+**Bloom Level:** Aplicar
+
+### Objetivos de Aprendizado:
+- [ ] Acessar VPS via SSH
+- [ ] Instalar Docker na VPS
+- [ ] Instalar Portainer
+- [ ] Acessar interface do Portainer
+
+### Conteúdo:
+1. **Acesso SSH**
+   - Windows: usar PuTTY ou CMD
+   - Mac/Linux: usar Terminal
+   - Comando: `ssh root@SEU_IP`
+   - Inserir senha root
+
+2. **Instalação do Docker**
+   - Comando único (script oficial)
+   - Verificar instalação: `docker --version`
+
+3. **Instalação do Portainer**
+   - Comando docker run
+   - Configurar porta 9000
+   - Iniciar container Portainer
+
+4. **Primeiro Acesso ao Portainer**
+   - Acessar: `http://SEU_IP:9000`
+   - Criar usuário admin
+   - Criar senha forte
+   - Conectar ao Docker local
+
+5. **Tour pela Interface**
+   - Containers
+   - Images
+   - Volumes
+   - Stacks (onde vamos trabalhar)
+
+### Ferramentas Usadas:
+- SSH (PuTTY/Terminal)
+- Docker
+- Portainer
+
+### Entregáveis:
+- [ ] Docker instalado na VPS
+- [ ] Portainer instalado e acessível
+- [ ] Usuário admin criado no Portainer
+
+### Quiz (após lesson):
+- 5 questões sobre Docker e Portainer
+
+---
+
+# 📚 MÓDULO 2: Suas Primeiras Instalações
+
+**Duração:** ~50 minutos  
+**Objetivo:** Instalar 2 ferramentas funcionando (n8n + Chatwoot)  
+**Entregáveis:** n8n rodando + Chatwoot rodando
+
+---
+
+## Lesson 2.1: Instalando OrionDesign (Conceito de Stacks)
+
+**Duração:** 15 minutos  
+**Formato:** Vídeo gravado (screenshare)  
+**Bloom Level:** Aplicar
+
+### Objetivos de Aprendizado:
+- [ ] Entender o que é uma Stack no Portainer
+- [ ] Instalar OrionDesign
+- [ ] Navegar pela biblioteca de templates
+- [ ] Compreender a estrutura de um docker-compose
+
+### Conteúdo:
+1. **O Que é uma Stack?**
+   - Stack = conjunto de containers trabalhando juntos
+   - Definido em arquivo docker-compose.yml
+   - Facilita instalação de aplicações complexas
+
+2. **Instalando OrionDesign**
+   - Acessar Portainer → Stacks
+   - Criar nova stack
+   - Colar template do OrionDesign
+   - Deploy da stack
+   - Acessar OrionDesign via navegador
+
+3. **Tour pelo OrionDesign**
+   - Biblioteca de templates
+   - Categorias de ferramentas
+   - Como usar um template (preview)
+
+4. **Anatomia de um Docker Compose**
+   - Services (ferramentas/containers)
+   - Ports (portas de acesso)
+   - Volumes (dados persistentes)
+   - Environment (variáveis de configuração)
+
+### Ferramentas Usadas:
+- Portainer
+- OrionDesign
+
+### Entregáveis:
+- [ ] OrionDesign instalado e funcionando
+- [ ] Biblioteca de templates acessível
+
+### Quiz (após lesson):
+- 5 questões sobre Stacks e OrionDesign
+
+---
+
+## Lesson 2.2: Sua Primeira Ferramenta - n8n
+
+**Duração:** 15 minutos  
+**Formato:** Vídeo gravado (screenshare)  
+**Bloom Level:** Aplicar
+
+### Objetivos de Aprendizado:
+- [ ] Instalar n8n usando OrionDesign/Portainer
+- [ ] Configurar subdomínio para n8n
+- [ ] Acessar interface do n8n
+- [ ] Criar primeira automação de teste
+
+### Conteúdo:
+1. **O Que é n8n?**
+   - Ferramenta de automação (alternativa ao Zapier)
+   - Versão cloud: R$ 150/mês
+   - Versão self-hosted: grátis!
+
+2. **Instalação via OrionDesign**
+   - Buscar template "n8n"
+   - Configurar variáveis:
+     - Subdomínio: `n8n.seudominio.com`
+     - Email para SSL
+     - Senha de acesso
+   - Deploy da stack
+   - Aguardar containers iniciarem
+
+3. **Configuração de Subdomínio**
+   - Verificar DNS propagado
+   - Acessar via HTTPS (certificado automático)
+
+4. **Primeiro Acesso ao n8n**
+   - Login com credenciais
+   - Tour pela interface
+   - Criar workflow simples de teste
+
+5. **Teste de Funcionamento**
+   - Criar workflow "Hello World"
+   - Executar manualmente
+   - Verificar logs
+
+### Ferramentas Usadas:
+- Portainer
+- OrionDesign
+- n8n
+
+### Entregáveis:
+- [ ] n8n instalado e rodando
+- [ ] Acesso via `n8n.seudominio.com`
+- [ ] Workflow de teste funcionando
+
+### Quiz (após lesson):
+- 5 questões sobre instalação do n8n
+
+---
+
+## Lesson 2.3: Segunda Ferramenta - Chatwoot
+
+**Duração:** 15 minutos  
+**Formato:** Vídeo gravado (screenshare)  
+**Bloom Level:** Aplicar
+
+### Objetivos de Aprendizado:
+- [ ] Instalar Chatwoot usando OrionDesign/Portainer
+- [ ] Configurar subdomínio para Chatwoot
+- [ ] Acessar interface do Chatwoot
+- [ ] Configurar primeiro inbox de teste
+
+### Conteúdo:
+1. **O Que é Chatwoot?**
+   - Ferramenta de atendimento ao cliente
+   - Alternativa ao Zendesk/Intercom
+   - Versão cloud: R$ 100/mês
+   - Versão self-hosted: grátis!
+
+2. **Instalação via OrionDesign**
+   - Buscar template "Chatwoot"
+   - Configurar variáveis:
+     - Subdomínio: `chatwoot.seudominio.com`
+     - Banco de dados PostgreSQL (incluso)
+     - Redis (incluso)
+     - Email SMTP (opcional)
+   - Deploy da stack
+   - Aguardar inicialização (pode demorar 2-3 min)
+
+3. **Primeiro Acesso ao Chatwoot**
+   - Acessar `chatwoot.seudominio.com`
+   - Criar conta admin
+   - Criar primeira conta (workspace)
+
+4. **Configuração Básica**
+   - Criar inbox de teste (Website)
+   - Instalar widget no site (demo)
+   - Enviar primeira mensagem de teste
+
+5. **Troubleshooting Comum**
+   - Container demora a inicializar: normal
+   - Erro de banco de dados: aguardar 2 min
+   - Certificado SSL não gerado: verificar DNS
+
+### Ferramentas Usadas:
+- Portainer
+- OrionDesign
+- Chatwoot
+
+### Entregáveis:
+- [ ] Chatwoot instalado e rodando
+- [ ] Acesso via `chatwoot.seudominio.com`
+- [ ] Inbox de teste configurado
+
+### Quiz (após lesson):
+- 5 questões sobre instalação do Chatwoot
+
+---
+
+## Lesson 2.4: Troubleshooting Comum
+
+**Duração:** 5 minutos  
+**Formato:** Vídeo gravado  
+**Bloom Level:** Analisar
+
+### Objetivos de Aprendizado:
+- [ ] Identificar erros comuns em instalações
+- [ ] Resolver problemas de DNS
+- [ ] Resolver problemas de containers
+- [ ] Saber onde buscar logs
+
+### Conteúdo:
+1. **Problemas de DNS**
+   - Sintoma: "Site não encontrado"
+   - Causa: DNS não propagado
+   - Solução: Aguardar até 24h ou verificar configuração
+
+2. **Problemas de Container**
+   - Sintoma: Container em loop (restart constante)
+   - Causa: Configuração errada ou falta de recursos
+   - Solução: Verificar logs no Portainer
+
+3. **Problemas de Certificado SSL**
+   - Sintoma: "Conexão não segura"
+   - Causa: Certificado ainda não gerado
+   - Solução: Aguardar 5-10 min ou verificar email configurado
+
+4. **Como Ler Logs no Portainer**
+   - Acessar container → Logs
+   - Identificar mensagens de erro
+   - Buscar erro no Google/ChatGPT
+
+5. **Recursos de Ajuda**
+   - Documentação oficial das ferramentas
+   - Suporte do curso
+   - Comunidades (Discord, fóruns)
+
+### Ferramentas Usadas:
+- Portainer (logs)
+
+### Entregáveis:
+- Nenhum (aula de troubleshooting)
+
+### Quiz (após lesson):
+- 5 questões sobre resolução de problemas
+
+---
+
+# 📚 MÓDULO 3: Projeto Final e Autonomia
+
+**Duração:** ~30 minutos  
+**Objetivo:** Instalar 3ª ferramenta + segurança + monetização  
+**Entregáveis:** 3ª ferramenta rodando + VPS segura
+
+---
+
+## Lesson 3.1: Instalando Sua Terceira Ferramenta (Escolha Livre)
+
+**Duração:** 15 minutos  
+**Formato:** Vídeo gravado (screenshare)  
+**Bloom Level:** Criar
+
+### Objetivos de Aprendizado:
+- [ ] Escolher uma ferramenta baseada em necessidade
+- [ ] Instalar ferramenta de forma autônoma
+- [ ] Testar funcionamento
+- [ ] Demonstrar autonomia adquirida
+
+### Conteúdo:
+1. **Opções de Ferramentas**
+   - **Evolution API:** API para WhatsApp
+   - **NocoDB:** Banco de dados no-code (alternativa ao Airtable)
+   - **Supabase:** Backend completo (alternativa ao Firebase)
+   - **Baserow:** Planilhas colaborativas
+
+2. **Como Escolher?**
+   - Qual sua necessidade atual?
+   - Qual ferramenta resolve seu problema?
+   - Demonstração rápida de cada opção
+
+3. **Instalação Guiada (Exemplo: Evolution API)**
+   - Buscar template no OrionDesign
+   - Configurar variáveis necessárias
+   - Deploy da stack
+   - Testar funcionamento
+
+4. **Instalação Autônoma (Você Escolhe)**
+   - Seguir mesmo processo
+   - Aplicar conhecimento das lessons anteriores
+   - Resolver problemas por conta própria
+
+5. **Validação**
+   - Ferramenta acessível via subdomínio
+   - Interface funcionando
+   - Teste básico realizado
+
+### Ferramentas Usadas:
+- Portainer
+- OrionDesign
+- Ferramenta escolhida pelo aluno
+
+### Entregáveis:
+- [ ] 3ª ferramenta instalada e funcionando
+- [ ] Acesso via subdomínio configurado
+- [ ] Teste de funcionamento realizado
+
+### Quiz (após lesson):
+- 5 questões sobre autonomia e escolha de ferramentas
+
+---
+
+## Lesson 3.2: Segurança Básica e Backups
+
+**Duração:** 10 minutos  
+**Formato:** Vídeo gravado (screenshare)  
+**Bloom Level:** Aplicar
+
+### Objetivos de Aprendizado:
+- [ ] Configurar firewall básico na VPS
+- [ ] Alterar porta SSH padrão
+- [ ] Criar backups automáticos
+- [ ] Entender importância de senhas fortes
+
+### Conteúdo:
+1. **Firewall UFW (Ubuntu)**
+   - Ativar UFW
+   - Liberar portas necessárias (80, 443, 9000, SSH)
+   - Bloquear resto
+
+2. **Alterar Porta SSH**
+   - Por que alterar porta 22?
+   - Editar configuração SSH
+   - Reiniciar serviço
+   - Testar nova porta
+
+3. **Backups Automáticos**
+   - Usar recurso de backup do provedor (se disponível)
+   - Backup via Portainer (export de stacks)
+   - Frequência recomendada: semanal
+
+4. **Senhas Fortes**
+   - Usar gerenciador de senhas
+   - Ativar 2FA onde possível
+   - Nunca compartilhar credenciais
+
+5. **Monitoramento Básico**
+   - Verificar uso de recursos no Portainer
+   - Alertas de container parado
+   - Logs de acesso
+
+### Ferramentas Usadas:
+- UFW (firewall)
+- SSH
+- Portainer (backups)
+
+### Entregáveis:
+- [ ] Firewall configurado
+- [ ] Porta SSH alterada
+- [ ] Primeiro backup criado
+
+### Quiz (após lesson):
+- 5 questões sobre segurança
+
+---
+
+## Lesson 3.3: Próximos Passos e Monetização
+
+**Duração:** 5 minutos  
+**Formato:** Vídeo gravado  
+**Bloom Level:** Avaliar
+
+### Objetivos de Aprendizado:
+- [ ] Entender próximos passos de aprendizado
+- [ ] Compreender oportunidades de monetização
+- [ ] Receber recursos adicionais
+- [ ] Celebrar conquista
+
+### Conteúdo:
+1. **Parabéns, Lendário!**
+   - Recapitulação do que você conquistou
+   - 3 ferramentas rodando
+   - Economia de R$ 4.272/ano
+   - Autonomia tecnológica
+
+2. **Próximos Passos de Aprendizado**
+   - Explorar outras 47+ ferramentas no OrionDesign
+   - Aprender Docker Compose avançado
+   - Integrar ferramentas entre si
+   - Criar automações complexas
+
+3. **Oportunidades de Monetização**
+   - **Serviço 1:** Instalações para clientes (R$ 300-800/instalação)
+   - **Serviço 2:** Pacotes de manutenção (R$ 200-500/mês)
+   - **Serviço 3:** Consultoria em automações (R$ 100-300/hora)
+   - Como precificar seus serviços
+   - Onde encontrar clientes
+
+4. **Recursos Adicionais**
+   - Lista de 50+ ferramentas open source
+   - Templates prontos de docker-compose
+   - Comunidade de alunos
+   - Suporte contínuo
+
+5. **Certificação**
+   - Como solicitar certificado
+   - Compartilhar no LinkedIn
+   - Usar como credencial profissional
+
+6. **Chamada para Ação**
+   - Instale mais ferramentas
+   - Compartilhe seu sucesso
+   - Ofereça serviços
+   - Continue aprendendo
+   - **Não perca a Lesson Bônus 3.4** sobre manutenção!
+
+### Ferramentas Usadas:
+- Nenhuma (aula de encerramento)
+
+### Entregáveis:
+- Nenhum (lesson motivacional)
+
+### Quiz (após lesson):
+- 5 questões sobre próximos passos e monetização
+
+---
+
+## Lesson 3.4 (BÔNUS): Atualização e Manutenção de Ferramentas
+
+**Duração:** 10 minutos  
+**Formato:** Vídeo gravado (screenshare)  
+**Bloom Level:** Aplicar
+
+### Objetivos de Aprendizado:
+- [ ] Entender por que atualizar ferramentas é importante
+- [ ] Verificar versões instaladas vs. versões disponíveis
+- [ ] Atualizar ferramentas via Portainer
+- [ ] Criar rotina de manutenção preventiva
+- [ ] Solucionar problemas após atualizações
+
+### Conteúdo:
+1. **Por Que Manutenção é Importante?**
+   - Segurança: correção de vulnerabilidades
+   - Performance: melhorias de desempenho
+   - Novos recursos: aproveitar features novas
+   - Estabilidade: correção de bugs
+   - **Regra de ouro:** Sempre fazer backup antes de atualizar!
+
+2. **Verificando Versões Instaladas**
+   - Acessar Portainer → Containers
+   - Ver versão da imagem (tag)
+   - Ex: `n8n:latest` vs `n8n:1.25.0`
+   - Consultar site oficial da ferramenta
+   - Ler changelog (o que mudou?)
+
+3. **Estratégias de Atualização**
+   - **Opção 1:** Usar tag `latest` (sempre atualiza automaticamente)
+     - Vantagem: sempre atualizado
+     - Desvantagem: pode quebrar algo
+   - **Opção 2:** Usar tag de versão específica (ex: `1.25.0`)
+     - Vantagem: controle total
+     - Desvantagem: manual
+   - **Recomendação:** Para produção, use versão específica
+
+4. **Como Atualizar via Portainer (Passo a Passo)**
+   - **Antes de tudo:** Fazer backup!
+     - Exportar stack (JSON)
+     - Backup de volumes (dados)
+   - **Passo 1:** Parar container
+   - **Passo 2:** Ir em Containers → Selecionar → Recreate
+   - **Passo 3:** Habilitar "Pull latest image version"
+   - **Passo 4:** Recreate
+   - **Passo 5:** Aguardar download da nova imagem
+   - **Passo 6:** Container reinicia com nova versão
+   - **Passo 7:** Testar funcionamento
+
+5. **Atualizando via Stack (Recomendado)**
+   - Ir em Stacks → Selecionar stack
+   - Clicar em "Editor"
+   - Alterar tag da imagem (ex: `:latest` para `:1.26.0`)
+   - "Update the stack"
+   - Portainer baixa nova imagem e recria container
+   - Vantagem: mantém histórico de versões
+
+6. **Testando Após Atualização**
+   - Acessar ferramenta via navegador
+   - Verificar se funcionalidades principais funcionam
+   - Checar logs no Portainer (erros?)
+   - Se algo quebrou: fazer rollback!
+
+7. **Rollback: Voltando Versão Anterior**
+   - Se algo deu errado após atualização:
+   - Editar stack novamente
+   - Voltar para versão anterior (ex: `1.25.0`)
+   - Update the stack
+   - Restaurar backup se necessário
+
+8. **Rotina de Manutenção Recomendada**
+   - **Semanal:**
+     - Verificar logs de erros
+     - Monitorar uso de recursos (CPU, RAM, disco)
+     - Verificar se containers estão rodando
+   - **Mensal:**
+     - Verificar versões disponíveis
+     - Ler changelogs das ferramentas
+     - Atualizar ferramentas não-críticas
+   - **Trimestral:**
+     - Atualizar Docker e Portainer
+     - Atualizar sistema operacional (Ubuntu)
+     - Revisar configurações de segurança
+     - Testar backups (restaurar em ambiente de teste)
+
+9. **Atualizando Docker e Portainer**
+   - **Docker:**
+     ```bash
+     curl -fsSL https://get.docker.com -o get-docker.sh
+     sudo sh get-docker.sh
+     ```
+   - **Portainer:**
+     ```bash
+     docker stop portainer
+     docker rm portainer
+     docker pull portainer/portainer-ce:latest
+     docker run -d -p 9000:9000 --name=portainer --restart=always \
+       -v /var/run/docker.sock:/var/run/docker.sock \
+       -v portainer_data:/data \
+       portainer/portainer-ce:latest
+     ```
+
+10. **Monitoramento Simples**
+    - Usar Portainer Dashboard
+    - Verificar:
+      - CPU usage
+      - Memory usage
+      - Disk space
+    - Se CPU/RAM > 80%: considerar upgrade de VPS
+    - Se Disk > 80%: limpar volumes antigos ou aumentar disco
+
+11. **Limpeza de Recursos Antigos**
+    - **Imagens antigas não usadas:**
+      ```bash
+      docker image prune -a
+      ```
+    - **Volumes órfãos:**
+      ```bash
+      docker volume prune
+      ```
+    - **Containers parados:**
+      ```bash
+      docker container prune
+      ```
+    - ⚠️ **CUIDADO:** Isso remove permanentemente! Só faça se tiver backup.
+
+12. **Checklist de Manutenção Mensal**
+    - [ ] Backup de todas as stacks (export JSON)
+    - [ ] Backup de volumes importantes
+    - [ ] Verificar versões desatualizadas
+    - [ ] Ler changelogs das ferramentas
+    - [ ] Atualizar ferramentas (uma por vez)
+    - [ ] Testar cada ferramenta após atualização
+    - [ ] Limpar imagens antigas (docker image prune)
+    - [ ] Verificar espaço em disco
+    - [ ] Revisar logs de erro
+    - [ ] Testar backups (restaurar em ambiente de teste)
+
+### Ferramentas Usadas:
+- Portainer (atualização e monitoramento)
+- SSH (comandos Docker)
+- Backup/Export tools
+
+### Entregáveis:
+- [ ] Primeira atualização de ferramenta realizada com sucesso
+- [ ] Backup criado antes da atualização
+- [ ] Checklist de manutenção mensal salvo
+- [ ] Conhecimento de rollback
+
+### Quiz (após lesson):
+- 5 questões sobre atualização e manutenção
+
+---
+
+## 📊 Resumo de Entregáveis do Curso
+
+Ao final das 12 lessons, o aluno terá:
+
+✅ **Infraestrutura:**
+- VPS contratada e configurada
+- Docker instalado
+- Portainer instalado e acessível
+- Domínio registrado e DNS configurado
+
+✅ **Ferramentas Funcionando:**
+- OrionDesign (facilitador de instalações)
+- n8n (automação)
+- Chatwoot (atendimento)
+- 3ª ferramenta de escolha livre
+
+✅ **Segurança:**
+- Firewall configurado
+- Porta SSH alterada
+- Backup inicial criado
+
+✅ **Conhecimento:**
+- Autonomia para instalar qualquer ferramenta open source
+- Troubleshooting básico
+- Conceitos de Docker, Portainer, Stacks
+- Oportunidades de monetização
+
+✅ **Economia:**
+- R$ 4.272/ano economizados
+- Investimento: apenas R$ 528/ano (VPS + domínio)
+
+---
+
+## 📈 Distribuição da Taxonomia de Bloom
+
+| Nível | % do Curso | Lessons |
+|-------|-----------|---------|
+| **Lembrar** | 8% | 1.1 |
+| **Compreender** | 17% | 1.2, 3.3 |
+| **Aplicar** | 58% | 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 3.2 |
+| **Analisar** | 8% | 2.4 |
+| **Criar** | 9% | 3.1 |
+| **Avaliar** | 0% | (implícito em quizzes) |
+
+**✅ Balanceamento ideal para curso prático hands-on**
+
+---
+
+## 🎯 Critérios de Sucesso
+
+O aluno completou o curso com sucesso se:
+
+✅ Assistiu 100% das 12 lessons  
+✅ Completou todos os 12 quizzes  
+✅ Possui 3 ferramentas funcionando na VPS  
+✅ Consegue instalar novas ferramentas de forma autônoma  
+✅ Economizou R$ 356 no primeiro mês (ROI imediato)
+
+---
+
+**Última atualização:** Outubro 2025  
+**Versão:** 1.0
