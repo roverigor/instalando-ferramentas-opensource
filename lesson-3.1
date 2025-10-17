@@ -1,0 +1,375 @@
+# Lesson 3.1: Instalando Sua Terceira Ferramenta (Escolha Livre)
+
+**Módulo:** 3 - Projeto Final e Autonomia  
+**Duração:** 15 minutos  
+**Objetivo:** Demonstrar autonomia instalando uma ferramenta de sua escolha
+
+---
+
+## 🎯 O Que Você Vai Conquistar Aqui
+
+- [ ] Escolher uma ferramenta baseada em sua necessidade real
+- [ ] Instalar a ferramenta de forma **autônoma** (você no comando!)
+- [ ] Testar funcionamento completo
+- [ ] Demonstrar que você ganhou autonomia tecnológica
+
+---
+
+## 🎓 Parabéns, Lendário! Você Chegou Longe!
+
+Olha só onde você está agora:
+
+✅ Tem uma **VPS profissional** rodando  
+✅ **Docker e Portainer** instalados  
+✅ **Cloudflare** configurado (DNS + SSL automático)  
+✅ **n8n** rodando (economia de R$ 150/mês)  
+✅ **Chatwoot** rodando (economia de R$ 100/mês)
+
+**Total economizado até agora: R$ 250/mês** 💰
+
+E o mais importante: você aprendeu o **processo**.
+
+Agora vem o teste final: **instalar uma terceira ferramenta SOZINHO**.
+
+Sim, você vai fazer isso! E vai ver que é **mais fácil do que parece**, porque você já entendeu a lógica.
+
+---
+
+## 🔍 Escolhendo Sua Terceira Ferramenta
+
+Antes de instalar, você precisa escolher **qual ferramenta faz sentido pra você**.
+
+Vou te apresentar **4 opções incríveis** e você escolhe a que mais te interessa:
+
+---
+
+### **Opção 1: Evolution API**
+
+**O que é?**  
+API para conectar e automatizar WhatsApp (sem precisar do WhatsApp Business API oficial).
+
+**Pra quem é?**
+- Quem quer automatizar atendimento no WhatsApp
+- Quem quer integrar WhatsApp com n8n
+- Quem quer criar chatbots no WhatsApp
+
+**Custo cloud:** R$ 80-150/mês  
+**Custo self-hosted:** R$ 0 (já incluso na VPS)
+
+**Casos de uso:**
+- Atendimento automático no WhatsApp
+- Notificações via WhatsApp
+- Integração com CRM via WhatsApp
+
+---
+
+### **Opção 2: NocoDB**
+
+**O que é?**  
+Banco de dados no-code (alternativa ao Airtable). Interface de planilha para gerenciar dados.
+
+**Pra quem é?**
+- Quem precisa organizar dados (clientes, produtos, projetos)
+- Quem quer criar dashboards simples
+- Quem quer um Airtable grátis
+
+**Custo cloud (Airtable):** R$ 50-100/mês  
+**Custo self-hosted:** R$ 0
+
+**Casos de uso:**
+- CRM simples
+- Gerenciamento de projetos
+- Inventário de produtos
+- Base de conhecimento
+
+---
+
+### **Opção 3: Supabase**
+
+**O que é?**  
+Backend completo (banco de dados PostgreSQL + APIs automáticas + autenticação). Alternativa ao Firebase.
+
+**Pra quem é?**
+- Desenvolvedores que criam apps/sites
+- Quem precisa de banco de dados relacional
+- Quem quer APIs prontas automaticamente
+
+**Custo cloud:** R$ 80-200/mês  
+**Custo self-hosted:** R$ 0
+
+**Casos de uso:**
+- Backend para aplicativos
+- Banco de dados para sistemas
+- APIs REST automáticas
+
+---
+
+### **Opção 4: Baserow**
+
+**O que é?**  
+Planilhas colaborativas no-code (alternativa ao Airtable/Notion Database).
+
+**Pra quem é?**
+- Quem precisa de planilhas colaborativas
+- Quem quer organizar informações em equipe
+- Quem quer um Airtable mais simples
+
+**Custo cloud (Airtable):** R$ 40-80/mês  
+**Custo self-hosted:** R$ 0
+
+**Casos de uso:**
+- Gestão de tarefas em equipe
+- Base de dados colaborativa
+- Formulários e coleta de dados
+
+---
+
+## 🤔 Como Escolher?
+
+Faça essas perguntas a si mesmo:
+
+1. **Qual meu principal problema hoje?**
+   - Preciso automatizar WhatsApp → Evolution API
+   - Preciso organizar dados → NocoDB ou Baserow
+   - Preciso backend para app → Supabase
+
+2. **O que vou usar na prática?**
+   - Escolha algo que você realmente VAI USAR
+   - Não instale "só por instalar"
+
+3. **O que complementa minhas ferramentas atuais?**
+   - n8n + Evolution API = Automações no WhatsApp 🔥
+   - n8n + NocoDB = Automações com banco de dados
+   - Chatwoot + NocoDB = CRM completo
+
+**Minha recomendação:** Se você trabalha com atendimento/vendas → **Evolution API**
+
+Mas a escolha é sua, lendário! 🎯
+
+---
+
+## 🛠️ Instalação (Você no Comando!)
+
+Agora é com você. Vou te dar o **roteiro geral**, mas você vai aplicar o que aprendeu.
+
+### **Passo 1: Decidir a Ferramenta**
+
+- Escolha UMA das 4 opções acima
+- Anote o nome
+
+### **Passo 2: Acessar OrionDesign**
+
+1. Abra navegador
+2. Vá em `http://SEU_IP:1001`
+3. Ou via Portainer → Stacks → oriondesign → link externo
+
+### **Passo 3: Buscar Template**
+
+1. Use a barra de busca
+2. Digite o nome da ferramenta (ex: `evolution api`, `nocodb`, `supabase`, `baserow`)
+3. Clique no card da ferramenta
+
+### **Passo 4: Configurar Variáveis**
+
+**Variáveis comuns em TODAS as ferramentas:**
+
+- `SUBDOMAIN`: Nome do subdomínio (ex: `evolution`, `nocodb`, `supabase`, `baserow`)
+- `DOMAIN`: Seu domínio principal (ex: `seudominio.com`)
+- `EMAIL`: Seu email (para SSL)
+
+**Variáveis específicas:**
+
+Cada ferramenta pode ter variáveis extras. **Leia com atenção** o que cada uma pede.
+
+Exemplos:
+- Senhas de admin
+- Configurações de banco de dados
+- Tokens de API
+- Portas específicas
+
+**Dica:** Se não souber o que preencher, deixe o valor padrão sugerido.
+
+### **Passo 5: Deploy**
+
+1. Revise todas as variáveis
+2. Clique em **"Deploy Stack"**
+3. Aguarde processar (10-30 segundos)
+
+### **Passo 6: Verificar no Portainer**
+
+1. Vá em Portainer → Stacks
+2. Encontre a nova stack que você criou
+3. Clique nela
+4. Veja os containers rodando
+5. Acesse os **Logs** do container principal
+6. Aguarde mensagens de sucesso (2-5 minutos)
+
+### **Passo 7: Acessar a Ferramenta**
+
+1. Abra navegador
+2. Acesse: `https://SUBDOMINIO.seudominio.com`
+   - Exemplo: `https://evolution.seudominio.com`
+3. Aguarde carregar
+4. Você deve ver a interface da ferramenta! 🎉
+
+### **Passo 8: Configuração Inicial**
+
+Cada ferramenta terá uma **configuração inicial** diferente:
+
+- **Evolution API:** Conectar instância do WhatsApp
+- **NocoDB:** Criar primeiro workspace
+- **Supabase:** Criar primeiro projeto
+- **Baserow:** Criar primeira base
+
+Siga as instruções na tela. Geralmente é bem intuitivo.
+
+---
+
+## ✅ Teste de Funcionamento
+
+Para validar que tudo está OK:
+
+### **Evolution API:**
+- [ ] Consegue acessar `https://evolution.seudominio.com`
+- [ ] Consegue criar uma instância
+- [ ] Consegue gerar QR Code
+- [ ] Consegue conectar WhatsApp
+
+### **NocoDB:**
+- [ ] Consegue acessar `https://nocodb.seudominio.com`
+- [ ] Consegue criar conta/login
+- [ ] Consegue criar tabela
+- [ ] Consegue adicionar dados
+
+### **Supabase:**
+- [ ] Consegue acessar `https://supabase.seudominio.com`
+- [ ] Consegue criar projeto
+- [ ] Consegue acessar Table Editor
+- [ ] Consegue criar tabela de teste
+
+### **Baserow:**
+- [ ] Consegue acessar `https://baserow.seudominio.com`
+- [ ] Consegue criar conta/login
+- [ ] Consegue criar database
+- [ ] Consegue adicionar dados
+
+---
+
+## 🎉 Você Conseguiu! (Validação de Autonomia)
+
+Se você chegou até aqui e sua ferramenta está funcionando:
+
+**PARABÉNS, LENDÁRIO! VOCÊ TEM AUTONOMIA TECNOLÓGICA AGORA!** 🚀
+
+Isso significa que você é capaz de:
+
+✅ Instalar **qualquer ferramenta open source**  
+✅ Resolver problemas **por conta própria**  
+✅ Economizar **centenas de reais por mês**  
+✅ Ter **controle total** sobre suas ferramentas  
+✅ Oferecer **serviços de instalação** para clientes  
+
+---
+
+## 🚨 Troubleshooting Geral
+
+Se algo deu errado, siga este roteiro:
+
+### **1. Container não inicializa (restart loop)**
+
+**Verifique:**
+- Logs no Portainer (Containers → sua ferramenta → Logs)
+- Procure por erros em vermelho
+- Erro comum: falta de recursos (RAM/CPU)
+
+**Solução:**
+- Se RAM > 80%: considere upgrade de VPS
+- Se erro de configuração: revise variáveis e recrie stack
+
+### **2. Não consigo acessar via navegador**
+
+**Verifique:**
+- DNS propagou? (pode demorar até 24h)
+- Cloudflare configurado corretamente?
+  - Registro A ou * apontando para IP
+  - Proxy ON (nuvem laranja)
+- Container está rodando no Portainer?
+
+**Solução:**
+- Aguarde mais tempo para DNS
+- Verifique configurações do Cloudflare
+- Reinicie container se necessário
+
+### **3. Erro de certificado SSL**
+
+**Verifique:**
+- Cloudflare SSL/TLS em modo "Full"
+- "Always Use HTTPS" ativado
+
+**Solução:**
+- Aguarde 5-10 minutos
+- Limpe cache do navegador (Ctrl+F5)
+
+### **4. Não sei como usar a ferramenta**
+
+**Recursos:**
+- Documentação oficial da ferramenta (busque no Google)
+- YouTube (tutoriais em português)
+- ChatGPT (pergunte como usar)
+- Suporte do curso
+
+---
+
+## 💡 Próximos Experimentos
+
+Agora que você tem 3 ferramentas rodando, que tal:
+
+1. **Integrar n8n com sua nova ferramenta**
+   - n8n + Evolution API = Automações no WhatsApp
+   - n8n + NocoDB = CRUD automatizado
+   - n8n + Supabase = Backend automatizado
+
+2. **Instalar mais ferramentas**
+   - Explore o OrionDesign
+   - Tem 50+ ferramentas disponíveis!
+
+3. **Criar seu primeiro projeto real**
+   - Pense em um processo do seu negócio
+   - Automatize usando suas ferramentas
+
+---
+
+## 📊 Sua Economia Total
+
+Vamos calcular quanto você já economizou:
+
+| Ferramenta | Custo Cloud | Self-Hosted | Economia |
+|------------|-------------|-------------|----------|
+| n8n | R$ 150/mês | R$ 0 | R$ 150 |
+| Chatwoot | R$ 100/mês | R$ 0 | R$ 100 |
+| 3ª Ferramenta | R$ 50-150/mês | R$ 0 | ~R$ 100 |
+| **TOTAL** | **R$ 300-400/mês** | **R$ 40/mês (VPS)** | **~R$ 310/mês** |
+
+**Economia anual: R$ 3.720/ano** 💰
+
+E isso com **apenas 3 ferramentas**!
+
+Imagine quando você tiver 5, 10, 15 ferramentas rodando... 🤯
+
+---
+
+## 🎯 Próxima Lesson
+
+Na **Lesson 3.2**, você vai aprender sobre **Segurança Básica e Backups**.
+
+Porque não adianta nada ter tudo rodando se não estiver protegido, né?
+
+---
+
+**Parabéns mais uma vez, lendário!** 🎉
+
+Você provou que é capaz de ter **autonomia tecnológica**.
+
+Agora ninguém mais te segura! 🚀
+
+**Me conta aqui qual ferramenta você instalou e como foi! Dúvidas? Fique à vontade para encaminhar no suporte.**
